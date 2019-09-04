@@ -24,6 +24,7 @@ def checkparity(user_start, user_end):
         print("YAY")
     else:
         print("YOU SUCK!!!")
+        exit()
 
 
 
