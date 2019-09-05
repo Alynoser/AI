@@ -47,7 +47,7 @@ def start_menu():
     check_parity(user_start, user_end)
 
     while True:
-        print("1. Breadth First Search\n"
+        print("1. Breadth First Search apples\n"
               "2. Misplaced Tiles\n"
               "3. Manhattan Distance\n"
               "4. Gaschnig\n"
