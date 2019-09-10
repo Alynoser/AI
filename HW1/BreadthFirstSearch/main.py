@@ -30,7 +30,7 @@ def check_parity(user_start, user_end):
     else:
         print("YOU SUCK!!!")
         exit()
-
+#This asks the user for input, takes that input, and then turns it into a list of ints
 def start_menu():
     user_start1 = input("Please enter first line of the start sequence\n")
     user_start2 = input("Enter second line\n")
