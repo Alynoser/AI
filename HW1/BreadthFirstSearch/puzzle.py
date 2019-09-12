@@ -9,16 +9,17 @@ class Board(object):
         self.previous = previous
         self.moves = moves
 
+    def set_board(self, board):
+        self.board = board
+
     def is_goal(self):
         for i in range(0, 9):
             if i != 8:
                 if self.board[i] != i + 1:
                     return False
-
         return True
 
     def move_blank(self, where):
-
         blank = self.find_blank()
         if where == 'left':
             if blank % 3 != 0:
