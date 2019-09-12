@@ -1,23 +1,17 @@
 class Board(object):
 
-    def __init__(self, board=None, moves=0, previous=None):
-
+    def __init__(self, board=None, depth=0, previous=0):
         if board is None:
             self.board = [1, 2, 3, 4, 5, 6, 7, 8, 0]
         else:
             self.board = board
         self.previous = previous
-        self.moves = moves
+        self.depth = depth
 
-    def set_board(self, board):
+    def set_board(self, board, depth, previous):
         self.board = board
-
-    def is_goal(self):
-        for i in range(0, 9):
-            if i != 8:
-                if self.board[i] != i + 1:
-                    return False
-        return True
+        self.depth = depth
+        self.previous = previous
 
     def move_blank(self, where):
         blank = self.find_blank()
@@ -51,31 +45,31 @@ class Board(object):
         return blank
 
     def clone(self):
-        return Board(self.board.copy(), self.moves + 1, self)
+        return Board(self.board.copy(), self.depth + 1, self.previous)
 
     def exchange(self, source, target):
         self.board[source], self.board[target] = self.board[target], self.board[source]
 
-    def neighbours(self):
+    def branch(self):
         blank_index = self.find_blank()
-        neighbours = []
+        branch = []
         if blank_index % 3 != 0:
             new_board = self.clone()
             new_board.move_blank('left')
-            neighbours.append(new_board)
+            branch.append(new_board)
         if blank_index % 3 != 2:
             new_board = self.clone()
             new_board.move_blank('right')
-            neighbours.append(new_board)
+            branch.append(new_board)
         if int(blank_index / 3) != 0:
             new_board = self.clone()
             new_board.move_blank('up')
-            neighbours.append(new_board)
+            branch.append(new_board)
         if int(blank_index / 3) != 2:
             new_board = self.clone()
             new_board.move_blank('down')
-            neighbours.append(new_board)
-        return neighbours
+            branch.append(new_board)
+        return branch
 
     def __eq__(self, other):
         if other is None:
