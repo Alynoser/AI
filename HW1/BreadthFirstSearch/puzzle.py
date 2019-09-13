@@ -76,3 +76,23 @@ class Board(object):
             return False
         else:
             return self.board == other.board
+
+    def misplacedtiles(self, curr, goal):
+        h = 0
+        for i in range (0,8):
+            if curr[i] != goal[i]:
+                h = h+1
+        return h
+
+    def manhattan(self, curr, goal):
+        h = 0
+        for i in range (0,8):
+            n = curr[i]
+            for j in range(0,8):
+                if goal[j] == n:
+                    curr_row = i/3
+                    curr_colum = i%3
+                    goal_row = j/3
+                    goal_colum = j%3
+                    h = h + (abs(curr_row-goal_row)+abs(curr_colum-goal_colum))
+        return h
