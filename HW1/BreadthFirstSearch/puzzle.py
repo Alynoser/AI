@@ -4,20 +4,13 @@ import oldmoves
 
 class Board(object):
 
-    def __init__(self, board=None, depth=0, previous=0, goal = None):
+    def __init__(self, board=None, depth=0, previous=0):
         if board is None:
             self.board = [1, 2, 3, 4, 5, 6, 7, 8, 0]
         else:
             self.board = board
-        if goal is None:
-            self.goal = [1, 2, 3, 4, 5, 6, 7, 8, 0]
-        else:
-            self.goal = goal
         self.previous = previous
         self.depth = depth
-        self.prequeue = puzzleQueue.PuzzleQueue()
-        self.omovelist = oldmoves.OldMoves()
-        self.nodecount = 0
 
     def set_board(self, board, depth, previous):
         self.board = board
@@ -25,8 +18,13 @@ class Board(object):
         self.previous = previous
 
     def search_func(self, user_start, user_end, alg_num):
+        pqueue = puzzleQueue.PuzzleQueue()
+        nodecount =0
         self.set_board(user_start, user_end, 0)
-        if __eq__(user_start):
+        while True:
+            if __eq__(user_start):
+                return #junk
+            else:
 
     def move_blank(self, where):
         blank = self.find_blank()
@@ -60,7 +58,6 @@ class Board(object):
         return blank
 
     def clone(self):
-        self.nodecount += 1
         return Board(self.board.copy(), self.depth + 1, self.previous)
 
     def exchange(self, source, target):
@@ -87,11 +84,8 @@ class Board(object):
             branch.append(new_board)
         return branch
 
-    def __eq__(self, currboard):
-        if currboard is None:
-            return False
-        else:
-            return self.goal == currboard.board
+    def __eq__(self, board):
+        return self.board == board
 
     # Calculates the H value for misplaced tiles
     def misplacedtiles(self, curr, goal):
