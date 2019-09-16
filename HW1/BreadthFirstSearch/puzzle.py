@@ -17,6 +17,7 @@ class Board(object):
         self.depth = depth
         self.prequeue = puzzleQueue.PuzzleQueue()
         self.omovelist = oldmoves.OldMoves()
+        self.nodecount = 0
 
     def set_board(self, board, depth, previous):
         self.board = board
@@ -60,6 +61,7 @@ class Board(object):
         return blank
 
     def clone(self):
+        self.nodecount += 1
         return Board(self.board.copy(), self.depth + 1, self.previous)
 
     def exchange(self, source, target):
