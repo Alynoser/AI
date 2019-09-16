@@ -1,17 +1,32 @@
+import puzzleQueue
+import oldmoves
+
+
 class Board(object):
 
-    def __init__(self, board=None, depth=0, previous=0):
+    def __init__(self, board=None, depth=0, previous=0, goal = None):
         if board is None:
             self.board = [1, 2, 3, 4, 5, 6, 7, 8, 0]
         else:
             self.board = board
+        if goal is None:
+            self.goal = [1, 2, 3, 4, 5, 6, 7, 8, 0]
+        else:
+            self.goal = goal
         self.previous = previous
         self.depth = depth
+        self.prequeue = puzzleQueue.PuzzleQueue()
+        self.omovelist = oldmoves.OldMoves()
+        self.nodecount = 0
 
     def set_board(self, board, depth, previous):
         self.board = board
         self.depth = depth
         self.previous = previous
+
+    def search_func(self, user_start, user_end, alg_num):
+        self.set_board(user_start, user_end, 0)
+        if __eq__(user_start):
 
     def move_blank(self, where):
         blank = self.find_blank()
@@ -45,6 +60,7 @@ class Board(object):
         return blank
 
     def clone(self):
+        self.nodecount += 1
         return Board(self.board.copy(), self.depth + 1, self.previous)
 
     def exchange(self, source, target):
@@ -71,12 +87,13 @@ class Board(object):
             branch.append(new_board)
         return branch
 
-    def __eq__(self, other):
-        if other is None:
+    def __eq__(self, currboard):
+        if currboard is None:
             return False
         else:
-            return self.board == other.board
+            return self.goal == currboard.board
 
+    # Calculates the H value for misplaced tiles
     def misplacedtiles(self, curr, goal):
         h = 0
         for i in range (0,8):
@@ -84,15 +101,16 @@ class Board(object):
                 h = h+1
         return h
 
+    # Calculates the H value misplaced tiles
     def manhattan(self, curr, goal):
         h = 0
-        for i in range (0,8):
+        for i in range(0, 8):
             n = curr[i]
-            for j in range(0,8):
+            for j in range(0, 8):
                 if goal[j] == n:
                     curr_row = i/3
-                    curr_colum = i%3
+                    curr_column = i % 3
                     goal_row = j/3
-                    goal_colum = j%3
-                    h = h + (abs(curr_row-goal_row)+abs(curr_colum-goal_colum))
+                    goal_column = j % 3
+                    h = h + (abs(curr_row-goal_row)+abs(curr_column-goal_column))
         return h
