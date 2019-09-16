@@ -27,7 +27,6 @@ class Board(object):
     def search_func(self, user_start, user_end, alg_num):
         self.set_board(user_start, user_end, 0)
         if __eq__(user_start):
-            fuck
 
     def move_blank(self, where):
         blank = self.find_blank()
