@@ -5,6 +5,12 @@ import copy
 # user_end
 #  is the end point given by the user
 
+# check_parity
+# purpose: finds the parity of the start and end
+#    goal and compaires to see if they have a solution
+# Input: The user start position: user_start
+#        The user end position: user_end
+# Output:
 
 def check_parity(user_start, user_end):
     temp_start = copy.copy(user_start)
