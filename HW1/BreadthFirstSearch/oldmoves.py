@@ -1,4 +1,4 @@
-class oldmoves(object):
+class OldMoves:
 
     def __init__(self):
         self.movelist = []

@@ -1,4 +1,5 @@
 # TODO: Create queue somewhere.
+import queue
 class Queue:
 
     # Board: Grid to be Queued
