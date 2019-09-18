@@ -107,4 +107,33 @@ class Board(object):
                     goal_row = j/3
                     goal_column = j % 3
                     h = h + (abs(curr_row-goal_row)+abs(curr_column-goal_column))
+        return
+    def gashnig(self, curr, goal):
+        h = 0
+        done = 0
+        for x in range(0,8):
+            n = curr[x]
+            if n == 0:
+                i = x
+                break
+        while done != 1:
+            goal[i] = n
+            for j in range(0,8):
+                if curr[j] == n:
+                    z = curr[i]
+                    curr[i] = curr[j]
+                    curr[j] = z
+                    i = j
+                    if goal[i] == 0:
+                        for k in range(0,8):
+                            if (curr[k] != goal[k]):
+                                z = curr[i]
+                                curr[i] = curr[k]
+                                curr[k] = z
+            h = h + 1
+            for k in range(0, 8):
+                if (curr[k] != goal[k]):
+                    break
+                if k==8:
+                    done = 1
         return h
