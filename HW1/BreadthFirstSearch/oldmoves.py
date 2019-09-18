@@ -1,3 +1,5 @@
+import boards
+
 class oldmoves(object):
 
     def __init__(self):
@@ -5,7 +7,7 @@ class oldmoves(object):
 
     def check_list(self, board):
         for i in self.movelist:
-            if self.movelist[i] == board:
+            if i == board:
                 return False
         return True
 

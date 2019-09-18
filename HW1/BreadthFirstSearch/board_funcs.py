@@ -18,32 +18,32 @@ def exchange(source, target, new_board):
 
 
 def move_blank(direction, new_board):
-    blank = find_blank(new_board)
+    blank = find_blank(new_board.get_board())
     if direction == 'left':
         if blank % 3 != 0:
             t_col = (blank % 3) - 1
             t_row = int(blank / 3)
-            new_board = exchange(blank, t_row * 3 + t_col, new_board)
+            new_board.set_board(exchange(blank, t_row * 3 + t_col, new_board.get_board()))
     if direction == 'right':
         if blank % 3 != 2:
             t_col = (blank % 3) + 1
             t_row = int(blank / 3)
-            new_board = exchange(blank, t_row * 3 + t_col, new_board)
+            new_board.set_board(exchange(blank, t_row * 3 + t_col, new_board.get_board()))
     if direction == 'up':
         if int(blank / 3) != 0:
             t_col = (blank % 3)
             t_row = int(blank / 3) - 1
-            new_board = exchange(blank, t_row * 3 + t_col, new_board)
+            new_board.set_board(exchange(blank, t_row * 3 + t_col, new_board.get_board()))
     if direction == 'down':
         if int(blank / 3) != 2:
             t_col = (blank % 3)
             t_row = int(blank / 3) + 1
-            new_board = exchange(blank, t_row * 3 + t_col, new_board)
+            new_board.set_board(exchange(blank, t_row * 3 + t_col, new_board.get_board()))
     return new_board
 
 
 def branch(board):
-    blank_index = find_blank(board)
+    blank_index = find_blank(board.get_board())
     branch = []
     if blank_index % 3 != 0:
         new_board = clone(board)
@@ -64,14 +64,14 @@ def branch(board):
     return branch
 
 
-def clone(board):
+def clone(old_board):
     increment_branch_num()
-    return board.Board(board, board.get_depth + 1, branch_num)
+    return boards.Board(old_board.get_board(), old_board.get_depth() + 1, branch_num)
 
 
 def find_blank(board):
     blank = None
-    for i in range(0, 9):
+    for i in board:
         if board[i] == 0:
             blank = i
             break
@@ -79,7 +79,7 @@ def find_blank(board):
 
 
 def __eq__(board, end_board):
-    return board.get_board == end_board.get_board
+    return board == end_board
 
 
 def misplaced_tiles(curr, goal):

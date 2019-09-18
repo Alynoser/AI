@@ -1,4 +1,4 @@
-import sys
+import search
 import copy
 # user_start
 #  is the start point given by the user
@@ -37,7 +37,8 @@ def check_parity(user_start, user_end):
         print("YOU SUCK!!!")
         exit()
 
-#This asks the user for input, takes that input, and then turns it into a list of ints
+
+# This asks the user for input, takes that input, and then turns it into a list of ints
 def start_menu():
     user_start1 = input("Please enter first line of the start sequence\n")
     user_start2 = input("Enter second line\n")
@@ -54,6 +55,8 @@ def start_menu():
     check_parity(user_start, user_end)
 
     while True:
+        branch_num = 0
+        deapth = 0
         print("1. Breadth First Search apples\n"
               "2. Misplaced Tiles\n"
               "3. Manhattan Distance\n"
@@ -63,7 +66,7 @@ def start_menu():
         if 5 > user_alg < 1:
             print("You didnt not choose a valid algorithm")
         elif user_alg == 1:
-            bredth_first_search(user_start, user_end)
+            branch_num, deapth = search.search(1, user_start, user_end)
         elif user_alg == 2:
             print("need to write")
         elif user_alg == 3:
@@ -73,6 +76,7 @@ def start_menu():
         elif user_alg == 5:
             print("Thank you for being with us today")
             exit()
+        print("Branch number: ", branch_num, " Deapth number: ", deapth)
 
 
 start_menu()
