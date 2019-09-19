@@ -66,15 +66,15 @@ def start_menu():
         elif user_alg == 1:
             branch_num, deapth = search.search(1, user_start, user_end)
         elif user_alg == 2:
-            print("need to write")
+            branch_num, deapth = search.search(2, user_start, user_end)
         elif user_alg == 3:
-            print("need to write")
+            branch_num, deapth = search.search(3, user_start, user_end)
         elif user_alg == 4:
             print("need to write")
         elif user_alg == 5:
             print("Thank you for being with us today")
             exit()
-        print("Branch number: ", branch_num, " Deapth number: ", deapth)
+        print("Branch number: ", branch_num, " Depth number: ", deapth)
 
 
 start_menu()

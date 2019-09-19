@@ -47,24 +47,32 @@ def branch(board):
     blank_index = find_blank(board.get_board())
     branch = []
     if blank_index % 3 != 0:
+        increment_branch_num()
         new_board1 = copy.deepcopy(board)
         new_board1.set_depth(board.get_depth() + 1)
+        new_board1.set_branch_num(branch_num)
         new_board1 = move_blank('left', new_board1)
         branch.append(new_board1)
     if blank_index % 3 != 2:
+        increment_branch_num()
         new_board2 = copy.deepcopy(board)
         new_board2.set_depth(board.get_depth() + 1)
-        move_blank('right', new_board2)
+        new_board2.set_branch_num(branch_num)
+        new_board2 = move_blank('right', new_board2)
         branch.append(new_board2)
     if int(blank_index / 3) != 0:
+        increment_branch_num()
         new_board3 = copy.deepcopy(board)
         new_board3.set_depth(board.get_depth() + 1)
-        move_blank('up', new_board3)
+        new_board3.set_branch_num(branch_num)
+        new_board3 = move_blank('up', new_board3)
         branch.append(new_board3)
     if int(blank_index / 3) != 2:
+        increment_branch_num()
         new_board4 = copy.deepcopy(board)
         new_board4.set_depth(board.get_depth() + 1)
-        move_blank('down', new_board4)
+        new_board4.set_branch_num(branch_num)
+        new_board4 = move_blank('down', new_board4)
         branch.append(new_board4)
     return branch
 

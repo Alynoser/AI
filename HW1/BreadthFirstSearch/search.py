@@ -6,6 +6,7 @@ import copy
 
 
 def search(search_num, user_start, user_end):
+    # file = open("log.txt", 'a')
     oldmoveslist = oldmoves.oldmoves()
     pqueue = puzzleQueue.PuzzleQueue()
     board = boards.Board(user_start)
@@ -19,18 +20,26 @@ def search(search_num, user_start, user_end):
             new_branches = board_funcs.branch(board)
             for i in new_branches:
                 if oldmoveslist.check_list(i.get_board()):
+                    # file.write(str(i.get_board()))
                     if search_num == 1:
+                        # Breadth First Search
                         pqueue.queueit(i, i.get_branch_num())
                     elif search_num == 2:
-                        print("Misplaced tiles")
+                        h = board_funcs.misplaced_tiles(i.get_board(), end_board.get_board())
+                        g = i.get_depth()
+                        f = h + g
+                        pqueue.queueit(i, f)
                     elif search_num == 3:
-                        print("Manhatten")
+                        h = board_funcs.manhattan(i.get_board(), end_board.get_board())
+                        g = i.get_depth()
+                        f = h + g
+                        pqueue.queueit(i, f)
                     elif search_num == 4:
                         print("Gausten")
                     else:
                         exit()
-            if oldmoveslist.check_list(board):
-                oldmoveslist.add_to_list(board)
+            if oldmoveslist.check_list(board.get_board()):
+                oldmoveslist.add_to_list(board.get_board())
             board = pqueue.dequeue()
         board_funcs.clear_branch_num()
         return board.get_branch_num(), board.get_depth()
