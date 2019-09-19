@@ -1,6 +1,6 @@
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
 import queue
-import boards
-import heapq
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -12,19 +12,6 @@ class PrioritizedItem:
 
 
 class PuzzleQueue:
-
-    # def __init__(self):
-    #     self._queue = []
-    #     self._index = 0
-    #
-    # def queueit(self, item, priority):
-    #     heapq.heappush(self._queue, (-priority, self._index, item))
-    #     self._index += 1
-    #
-    # def dequeue(self):
-    #     return heapq.heappop(self._queue)[-1]
-    #
-
     # Initialization of the queue
     def __init__(self):
         self.pqueue = queue.PriorityQueue()

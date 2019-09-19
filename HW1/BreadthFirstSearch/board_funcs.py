@@ -1,4 +1,5 @@
-import boards
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
 import copy
 branch_num = 0
 
@@ -77,11 +78,6 @@ def branch(board):
     return branch
 
 
-def clone(old_board):
-    increment_branch_num()
-    return boards.Board(old_board.get_board(), old_board.get_depth() + 1, branch_num)
-
-
 def find_blank(board):
     blank = None
     for i in board:
@@ -118,8 +114,12 @@ def manhattan(curr, goal):
     return h
 
 
-def gashnig(curr, goal):
+def gashnig(currt, goalt):
+    i = -1
+    curr = copy.deepcopy(currt)
+    goal = copy.deepcopy(goalt)
     h = 0
+    check = 0
     done = 0
     for x in range(0, 8):
         n = curr[x]
@@ -127,23 +127,25 @@ def gashnig(curr, goal):
             i = x
             break
     while done != 1:
-        goal[i] = n
-        for j in range(0,8):
+        n = goal[i]
+        for j in range(len(curr)):
             if curr[j] == n:
                 z = curr[i]
                 curr[i] = curr[j]
                 curr[j] = z
                 i = j
                 if goal[i] == 0:
-                    for k in range(0,8):
+                    for k in range(0, 8):
                         if curr[k] != goal[k]:
                             z = curr[i]
                             curr[i] = curr[k]
                             curr[k] = z
+                            break
         h = h + 1
         for k in range(0, 8):
-            if curr[k] != goal[k]:
-                break
-            if k == 8:
-                done = 1
+            if curr[k] == goal[k]:
+                check = check + 1
+                if check == 9:
+                    done = 1
+
     return h

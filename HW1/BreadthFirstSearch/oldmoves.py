@@ -1,4 +1,6 @@
-import boards
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
+
 
 class oldmoves(object):
 

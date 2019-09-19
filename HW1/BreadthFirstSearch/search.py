@@ -1,3 +1,5 @@
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
 import boards
 import board_funcs
 import oldmoves
@@ -6,7 +8,6 @@ import copy
 
 
 def search(search_num, user_start, user_end):
-    # file = open("log.txt", 'a')
     oldmoveslist = oldmoves.oldmoves()
     pqueue = puzzleQueue.PuzzleQueue()
     board = boards.Board(user_start)
@@ -20,7 +21,6 @@ def search(search_num, user_start, user_end):
             new_branches = board_funcs.branch(board)
             for i in new_branches:
                 if oldmoveslist.check_list(i.get_board()):
-                    # file.write(str(i.get_board()))
                     if search_num == 1:
                         # Breadth First Search
                         pqueue.queueit(i, i.get_branch_num())

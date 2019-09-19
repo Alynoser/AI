@@ -1,3 +1,7 @@
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
+
+
 class Board(object):
 
     def __init__(self, board=None, depth=0, branch_num=0):

@@ -1,3 +1,5 @@
+# Chris Borg, Elysha Menefee, Ryan Richter
+# cjborg@alaska.edu, emmenefee@alaska.edu, rdrichter@alaska.edu
 import search
 import copy
 
@@ -56,7 +58,7 @@ def start_menu():
     check_parity(user_start, user_end)
     while True:
         branch_num = 0
-        deapth = 0
+        depth = 0
         print("1. Breadth First Search\n"
               "2. Misplaced Tiles\n"
               "3. Manhattan Distance\n"
@@ -66,17 +68,17 @@ def start_menu():
         if 5 > user_alg < 1:
             print("You didnt not choose a valid algorithm")
         elif user_alg == 1:
-            branch_num, deapth = search.search(1, user_start, user_end)
+            branch_num, depth = search.search(1, user_start, user_end)
         elif user_alg == 2:
-            branch_num, deapth = search.search(2, user_start, user_end)
+            branch_num, depth = search.search(2, user_start, user_end)
         elif user_alg == 3:
-            branch_num, deapth = search.search(3, user_start, user_end)
+            branch_num, depth = search.search(3, user_start, user_end)
         elif user_alg == 4:
-            branch_num, deapth = search.search(4, user_start, user_end)
+            branch_num, depth = search.search(4, user_start, user_end)
         elif user_alg == 5:
             print("Thank you for being with us today")
             exit()
-        print("Branch number: ", branch_num, " Depth number: ", deapth)
+        print("Branch number: ", branch_num, " Depth number: ", depth)
 
 
 start_menu()
