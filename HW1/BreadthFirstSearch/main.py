@@ -1,5 +1,7 @@
-import sys
+import search
 import copy
+
+
 # user_start
 #  is the start point given by the user
 # user_end
@@ -12,8 +14,9 @@ import copy
 #        The user end position: user_end
 # Output:
 
+
 def check_parity(user_start, user_end):
-    temp_start = copy.copy(user_start)
+    temp_start = copy.deepcopy(user_start)
     temp_end = copy.copy(user_end)
     if 0 in temp_start:
         temp_start.remove(0)
@@ -27,17 +30,16 @@ def check_parity(user_start, user_end):
     for i in range(len(temp_end)):
         if temp_end[i] != i+1 and temp_end[i] > i+1:
             end_count += (temp_end[i] - (i+1))
-    print(start_count)
-    print(end_count)
     start_count = start_count % 2
     end_count = end_count % 2
     if start_count == end_count:
-        print("YAY")
+        return
     else:
-        print("YOU SUCK!!!")
+        print("Not a parity, no solution")
         exit()
 
-#This asks the user for input, takes that input, and then turns it into a list of ints
+
+# This asks the user for input, takes that input, and then turns it into a list of ints
 def start_menu():
     user_start1 = input("Please enter first line of the start sequence\n")
     user_start2 = input("Enter second line\n")
@@ -52,9 +54,10 @@ def start_menu():
     user_start = list(map(int, user_start))
     user_end = list(map(int, user_end))
     check_parity(user_start, user_end)
-
     while True:
-        print("1. Breadth First Search apples\n"
+        branch_num = 0
+        deapth = 0
+        print("1. Breadth First Search\n"
               "2. Misplaced Tiles\n"
               "3. Manhattan Distance\n"
               "4. Gaschnig\n"
@@ -63,16 +66,17 @@ def start_menu():
         if 5 > user_alg < 1:
             print("You didnt not choose a valid algorithm")
         elif user_alg == 1:
-            bredth_first_search(user_start, user_end)
+            branch_num, deapth = search.search(1, user_start, user_end)
         elif user_alg == 2:
-            print("need to write")
+            branch_num, deapth = search.search(2, user_start, user_end)
         elif user_alg == 3:
-            print("need to write")
+            branch_num, deapth = search.search(3, user_start, user_end)
         elif user_alg == 4:
             print("need to write")
         elif user_alg == 5:
             print("Thank you for being with us today")
             exit()
+        print("Branch number: ", branch_num, " Depth number: ", deapth)
 
 
 start_menu()
