@@ -1,5 +1,6 @@
 import search
 import copy
+import os
 # user_start
 #  is the start point given by the user
 # user_end
@@ -13,7 +14,7 @@ import copy
 # Output:
 
 def check_parity(user_start, user_end):
-    temp_start = copy.copy(user_start)
+    temp_start = copy.deepcopy(user_start)
     temp_end = copy.copy(user_end)
     if 0 in temp_start:
         temp_start.remove(0)
@@ -27,14 +28,12 @@ def check_parity(user_start, user_end):
     for i in range(len(temp_end)):
         if temp_end[i] != i+1 and temp_end[i] > i+1:
             end_count += (temp_end[i] - (i+1))
-    print(start_count)
-    print(end_count)
     start_count = start_count % 2
     end_count = end_count % 2
     if start_count == end_count:
-        print("YAY")
+        return
     else:
-        print("YOU SUCK!!!")
+        print("Not a parity, no solution")
         exit()
 
 
@@ -53,11 +52,10 @@ def start_menu():
     user_start = list(map(int, user_start))
     user_end = list(map(int, user_end))
     check_parity(user_start, user_end)
-
     while True:
         branch_num = 0
         deapth = 0
-        print("1. Breadth First Search apples\n"
+        print("1. Breadth First Search\n"
               "2. Misplaced Tiles\n"
               "3. Manhattan Distance\n"
               "4. Gaschnig\n"
