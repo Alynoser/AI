@@ -72,7 +72,7 @@ def start_menu():
         elif user_alg == 3:
             branch_num, deapth = search.search(3, user_start, user_end)
         elif user_alg == 4:
-            print("need to write")
+            branch_num, deapth = search.search(4, user_start, user_end)
         elif user_alg == 5:
             print("Thank you for being with us today")
             exit()

@@ -35,7 +35,10 @@ def search(search_num, user_start, user_end):
                         f = h + g
                         pqueue.queueit(i, f)
                     elif search_num == 4:
-                        print("Gausten")
+                        h = board_funcs.gashnig(i.get_board(), end_board.get_board())
+                        g = i.get_depth()
+                        f = h + g
+                        pqueue.queueit(i, f)
                     else:
                         exit()
             if oldmoveslist.check_list(board.get_board()):
