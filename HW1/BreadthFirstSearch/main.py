@@ -1,6 +1,7 @@
 import search
 import copy
-import os
+
+
 # user_start
 #  is the start point given by the user
 # user_end
@@ -12,6 +13,7 @@ import os
 # Input: The user start position: user_start
 #        The user end position: user_end
 # Output:
+
 
 def check_parity(user_start, user_end):
     temp_start = copy.deepcopy(user_start)
