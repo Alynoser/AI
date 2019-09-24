@@ -142,6 +142,12 @@ def gashnig(currt, goalt):
                             break
                 break
 
+        for x in range(0, 8):
+            n = curr[x]
+            if n == 0:
+                i = x
+                break
+
         h = h + 1
         check = 0
         for k in range(0, 8):
