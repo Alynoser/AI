@@ -119,7 +119,6 @@ def gashnig(currt, goalt):
     curr = copy.deepcopy(currt)
     goal = copy.deepcopy(goalt)
     h = 0
-    check = 0
     done = 0
     for x in range(0, 8):
         n = curr[x]
@@ -141,11 +140,14 @@ def gashnig(currt, goalt):
                             curr[i] = curr[k]
                             curr[k] = z
                             break
+                break
+
         h = h + 1
+        check = 0
         for k in range(0, 8):
             if curr[k] == goal[k]:
                 check = check + 1
-                if check == 9:
+                if check == 8:
                     done = 1
 
     return h
