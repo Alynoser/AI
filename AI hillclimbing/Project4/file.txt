@@ -1,0 +1,3 @@
+apples 12
+cheese 183
+penix 1837
