@@ -49,6 +49,7 @@ string Company::getName()
 }
 
 void Company::moveCapital(Company x, Company y)
+//moves the money once the move is selected
 {
 	float x1 = (x.getCapital() - 100);
 	x.setCapital(x1);
@@ -57,17 +58,20 @@ void Company::moveCapital(Company x, Company y)
 }
 
 float Company::profit()
+//returns the money made by each company
 {
 	return (Capital * Change);
 }
 
 float Company::Baseline(Company a, Company b, Company c, Company d, Company e, Company f, Company g, Company h, Company i, Company j)
+//creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
 {
 	float p = (a.profit() + b.profit() + c.profit() + d.profit() + e.profit() + f.profit() + g.profit() + h.profit() + i.profit() + j.profit());
 	return p;
 }
 
 float Company::evaluateMove(float base, Company x, Company y)
+//returns the new total profit value of the move
 {
 	float nBase = (base - x.profit() - y.profit());
 	float xProfit = (x.getChange() * (x.getCapital() - 100));
