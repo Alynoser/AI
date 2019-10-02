@@ -55,29 +55,6 @@ void randomRestart(vector<Company> &vect)
 	}
 }
 
-int main(int argc, char *argv[])
-{
-	vector<Company> companies;
-	string file;
-	string line = "";
-	if (argc > 0)
-	{
-		file = argv[1];
-		ifstream inputFile(file);
-
-		while(getline(inputFile, line))
-		{
-			istringstream ss(line);
-			string name;
-			float var1;
-			ss >> name >> var1;
-			Company temp(name, 1000, var1);
-			companies.push_back(temp);
-		}
-	}
-
-	return 0;
-}
 
 
 int hillclimbing(vector <Company> companies)
@@ -89,7 +66,7 @@ int hillclimbing(vector <Company> companies)
 	vector <Company> companiesHighscore = companies;
 	float highscore = x.Baseline(companies);
 	int timesRestart = 0;
-	while (timesRestat < randomRestartTry)
+	while (timesRestart < randomRestartTry)
 	{
 		float base = x.Baseline(companies);
 		int xMove = 0;
@@ -101,7 +78,7 @@ int hillclimbing(vector <Company> companies)
 			{
 				if (i != j)
 				{
-					float move = x.evaluateMove(companies[i], companies[j]);
+					float move = x.evaluateMove(base, companies[i], companies[j]);
 					if (move > bestMove)
 					{
 						xMove = i;
@@ -136,7 +113,32 @@ int hillclimbing(vector <Company> companies)
 	cout << "According to Hillclimbing, the best investment stradegy is:" << endl;
 	for (int i; i++; i < 10)
 	{
-		cout << companies[i].getName() << " with " cout << companies[i].getCapital() << endl;
+		cout << companies[i].getName() << " with " << companies[i].getCapital() << endl;
 	}
 	return timesEvale;
+}
+
+int main(int argc, char *argv[])
+{
+	vector<Company> companies;
+	string file;
+	string line = "";
+	if (argc > 0)
+	{
+		file = argv[1];
+		ifstream inputFile(file);
+
+		while(getline(inputFile, line))
+		{
+			istringstream ss(line);
+			string name;
+			float var1;
+			ss >> name >> var1;
+			Company temp(name, 1000, var1);
+			companies.push_back(temp);
+		}
+		int i = hillclimbing(companies);
+	}
+
+	return 0;
 }
