@@ -37,7 +37,6 @@ void randomRestart(vector<Company> &vect)
 	{
 		currCapTotal = tmp.totalCap(vect);
 		difference = totalAllowCap - currCapTotal;
-		cout << difference << endl;
 			if (currCapTotal < totalAllowCap && i != 9)
 			{
 				initCapital = (rand() % 15) * 100; //Get random number between 0-1500
@@ -66,7 +65,7 @@ int hillclimbing(vector <Company> companies)
 	Company x;
 	bool onRestart = false;
 	int timesEvale = 0;
-	int randomRestartTry = 10;
+	int randomRestartTry = 100;
 	vector <Company> companiesHighscore = companies;
 	float highscore = x.Baseline(companies);
 	int timesRestart = 0;
@@ -115,7 +114,7 @@ int hillclimbing(vector <Company> companies)
 		timesEvale++;
 	}
 	cout << "According to Hillclimbing, the best investment stradegy is:" << endl;
-	for (int i = 0; i++; i < 10)
+	for (int i = 0; i < 10; ++i)
 	{
 		cout << companies[i].getName() << " with " << companies[i].getCapital() << endl;
 	}
@@ -130,8 +129,8 @@ int main(int argc, char *argv[])
 	string line = "";
 	if (argc > 0)
 	{
-		file = argv[1];
-		ifstream inputFile(file);
+		// file = argv[1];
+		ifstream inputFile("file.txt");
 
 		while(getline(inputFile, line))
 		{
