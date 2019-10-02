@@ -11,6 +11,7 @@ class Company
 	string Name;
 public:
 	void setCapital(float capital);
+	float totalCap(vector<Company> vect);
 	void setName(string name);
 	void setChange(float change);
 	float getCapital();

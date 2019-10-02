@@ -74,6 +74,17 @@ float Company::Baseline(vector<Company> vect)
 	return p;
 }
 
+float Company::totalCap(vector<Company> vect)
+//gets the total capital for the vector
+{
+	float p = 0;
+	for(int i = 0; i < vect.size(); ++i)
+	{
+		p += vect[i].getCapital();
+	}
+	return p;
+}
+
 float Company::evaluateMove(float base, Company x, Company y)
 //returns the new total profit value of the move
 {
