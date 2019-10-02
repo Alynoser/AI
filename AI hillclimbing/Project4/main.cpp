@@ -5,9 +5,13 @@
 #include <vector>
 #include <sstream>
 #include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
+
 
 using namespace std;
 float totalAllowCap = 10000;
+
 
 //setToZero()
 //Purpose: Set all companies capitals to zero
@@ -23,7 +27,7 @@ void setToZero(vector<Company> &v)
 
 void randomRestart(vector<Company> &vect)
 {
-	srand(time(NULL));
+	
 	setToZero(vect);
 
 	float initCapital = 0, currCapTotal = 0;
@@ -72,9 +76,9 @@ int hillclimbing(vector <Company> companies)
 		int xMove = 0;
 		int yMove = 0;
 		int bestMove = base;
-		for (int i; i++; i < 10)
+		for (int i = 0; i++; i < 10)
 		{
-			for (int j; j++; j < 10)
+			for (int j = 0; j++; j < 10)
 			{
 				if (i != j)
 				{
@@ -111,7 +115,7 @@ int hillclimbing(vector <Company> companies)
 		timesEvale++;
 	}
 	cout << "According to Hillclimbing, the best investment stradegy is:" << endl;
-	for (int i; i++; i < 10)
+	for (int i = 0; i++; i < 10)
 	{
 		cout << companies[i].getName() << " with " << companies[i].getCapital() << endl;
 	}
@@ -120,6 +124,7 @@ int hillclimbing(vector <Company> companies)
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
 	vector<Company> companies;
 	string file;
 	string line = "";
