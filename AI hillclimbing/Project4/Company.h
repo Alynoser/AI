@@ -9,7 +9,7 @@ class Company
 	float Change;
 	string Name;
 public:
-	void setCapital(float capital)
+	void setCapital(float capital);
 	void setName(string name);
 	void setChange(float change);
 	float getCapital();

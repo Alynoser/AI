@@ -20,10 +20,11 @@ int main(int argc, char *argv[])
 		while(getline(inputFile, line))
 		{
 			istringstream ss(line);
-
 			string name;
 			int var1;
 			ss >> name >> var1;
+			Company temp(name, 1000, var1);
+			companies.push_back(temp);
 		}
 
 	}
