@@ -63,7 +63,7 @@ float Company::profit()
 	return (Capital * Change);
 }
 
-float Company::Baseline(vecotr<Company> vect)
+float Company::Baseline(vector<Company> vect)
 //creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
 {
 	float p = 0;

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 class Company
 { 
@@ -17,7 +18,7 @@ public:
 	string getName();
 	float profit();
 	void moveCapital(Company x, Company y);
-	float Baseline(Company a, Company b, Company c, Company d, Company e, Company f, Company g, Company h, Company i, Company j);
+	float Baseline(vector<Company>);
 	float evaluateMove(float base, Company x, Company y);
 	Company();
 	Company(string name, float capital, float change);
