@@ -78,3 +78,65 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
+
+
+int hillclimbing(vector <Company> companies)
+{
+	Company x;
+	bool onRestart = false;
+	int timesEvale = 0;
+	int randomRestartTry = 10;
+	vector <Company> companiesHighscore = companies;
+	float highscore = x.Baseline(companies);
+	int timesRestart = 0;
+	while (timesRestat < randomRestartTry)
+	{
+		float base = x.Baseline(companies);
+		int xMove = 0;
+		int yMove = 0;
+		int bestMove = base;
+		for (int i; i++; i < 10)
+		{
+			for (int j; j++; j < 10)
+			{
+				if (i != j)
+				{
+					float move = x.evaluateMove(companies[i], companies[j]);
+					if (move > bestMove)
+					{
+						xMove = i;
+						yMove = j;
+					}
+				}
+			}
+		}
+		x.moveCapital(companies[xMove], companies[yMove]);
+		base = x.Baseline(companies);
+		if (base > highscore)
+		{
+			highscore = base;
+			companiesHighscore = companies;
+			if ((timesRestart > 0) && (onRestart))
+			{
+				onRestart = false;
+				randomRestartTry = randomRestartTry + 10;
+			}
+		}
+		int random = rand() % 100;
+		if (random == 42)
+		{
+			randomRestart(companies);
+			timesRestart++;
+			onRestart = true;
+
+		}
+
+		timesEvale++;
+	}
+	cout << "According to Hillclimbing, the best investment stradegy is:" << endl;
+	for (int i; i++; i < 10)
+	{
+		cout << companies[i].getName() << " with " cout << companies[i].getCapital() << endl;
+	}
+	return timesEvale;
+}
