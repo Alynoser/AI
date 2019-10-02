@@ -63,10 +63,14 @@ float Company::profit()
 	return (Capital * Change);
 }
 
-float Company::Baseline(Company a, Company b, Company c, Company d, Company e, Company f, Company g, Company h, Company i, Company j)
+float Company::Baseline(vecotr<Company> vect)
 //creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
 {
-	float p = (a.profit() + b.profit() + c.profit() + d.profit() + e.profit() + f.profit() + g.profit() + h.profit() + i.profit() + j.profit());
+	float p = 0;
+	for(int i = 0; i < vect.size(); i++)
+	{
+		p += vect[i].profit();
+	}
 	return p;
 }
 
