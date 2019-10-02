@@ -11,6 +11,13 @@ Company::Company()
 	Change = 666.66;
 }
 
+Company::Company(string name, float capital, float change)
+{
+	Name = name;
+	Capital = capital;
+	Change = change;
+}
+
 void Company::setCapital(float capital)
 {
 	Capital = capital;
@@ -29,7 +36,6 @@ void Company::setName(string name)
 float Company::getCapital()
 {
 	return Capital;
-
 }
 
 float Company::getChange()
@@ -64,8 +70,8 @@ float Company::Baseline(Company a, Company b, Company c, Company d, Company e, C
 float Company::evaluateMove(float base, Company x, Company y)
 {
 	float nBase = (base - x.profit() - y.profit());
-	float xProfit = (x.getChange() * (x.getCapital - 100));
-	float yProfit = (y.getChange() * (y.getCapital + 100));
+	float xProfit = (x.getChange() * (x.getCapital() - 100));
+	float yProfit = (y.getChange() * (y.getCapital() + 100));
 	nBase = nBase + xProfit + yProfit;
 	return nBase;
 }
