@@ -36,18 +36,31 @@ void setToZero(vector<Company> &v)
 	}
 }
 
-void moveCapital(Company x, Company y)
+void moveCapital(vector<Company> &vect, int x, int y) 
 //moves the money once the move is selected
 {
-	float x1 = (x.getCapital() - 100);
-	x.setCapital(x1);
-	float y1 = (y.getCapital() + 100);
-	y.setCapital(y1);
+	if (vect[x].getCapital() != 0)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			if (i == x)
+			{
+				float x1 = (vect[i].getCapital() - 100);
+				vect[i].setCapital(x1);
+			}
+			else if (i == y)
+			{
+				float y1 = (vect[i].getCapital() + 100);
+				vect[i].setCapital(y1);
+			}
+		}
+	}
 }
 
 float evaluateMove(float base, Company x, Company y)
 //returns the new total profit value of the move
 {
+
 	float nBase = (base - x.profit() - y.profit());
 	float xProfit = (x.getChange() * (x.getCapital() - 100));
 	float yProfit = (y.getChange() * (y.getCapital() + 100));
@@ -120,7 +133,7 @@ int hillclimbing(vector <Company> companies)
 				}
 			}
 		}
-		moveCapital(companies[xMove], companies[yMove]);
+		moveCapital(companies, xMove, yMove);
 		base = Baseline(companies);
 		if (base > highscore)
 		{
@@ -132,7 +145,7 @@ int hillclimbing(vector <Company> companies)
 				randomRestartTry = randomRestartTry + 10;
 			}
 		}
-		int random = rand() % 100;
+		int random = rand() % 250;
 		if (random == 42)
 		{
 			randomRestart(companies);

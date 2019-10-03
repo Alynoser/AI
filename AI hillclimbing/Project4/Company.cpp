@@ -94,6 +94,3 @@ float Company::totalCap(vector<Company> vect)
 	return nBase;
 }*/
 
-Company::~Company()
-{
-}

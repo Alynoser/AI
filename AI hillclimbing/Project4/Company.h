@@ -23,6 +23,5 @@ public:
 	//float evaluateMove(float base, Company x, Company y);
 	Company();
 	Company(string name, float capital, float change);
-	~Company();
 };
 
