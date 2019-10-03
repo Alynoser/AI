@@ -18,9 +18,9 @@ public:
 	float getChange();
 	string getName();
 	float profit();
-	void moveCapital(Company x, Company y);
-	float Baseline(vector<Company>);
-	float evaluateMove(float base, Company x, Company y);
+	//void moveCapital(Company x, Company y);
+	//float Baseline(vector<Company>);
+	//float evaluateMove(float base, Company x, Company y);
 	Company();
 	Company(string name, float capital, float change);
 	~Company();

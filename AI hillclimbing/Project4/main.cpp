@@ -17,12 +17,42 @@ float totalAllowCap = 10000;
 //Purpose: Set all companies capitals to zero
 //Input: a vector of Companies
 //Output: NA
+float Baseline(vector<Company> vect)
+//creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
+{
+	float p = 0;
+	for (int i = 0; i < vect.size(); i++)
+	{
+		p += vect[i].profit();
+	}
+	return p;
+}
+
 void setToZero(vector<Company> &v)
 {
 	for (int i = 0; i < v.size(); i++)
 	{
 		v[i].setCapital(0);
 	}
+}
+
+void moveCapital(Company x, Company y)
+//moves the money once the move is selected
+{
+	float x1 = (x.getCapital() - 100);
+	x.setCapital(x1);
+	float y1 = (y.getCapital() + 100);
+	y.setCapital(y1);
+}
+
+float evaluateMove(float base, Company x, Company y)
+//returns the new total profit value of the move
+{
+	float nBase = (base - x.profit() - y.profit());
+	float xProfit = (x.getChange() * (x.getCapital() - 100));
+	float yProfit = (y.getChange() * (y.getCapital() + 100));
+	nBase = nBase + xProfit + yProfit;
+	return nBase;
 }
 
 void randomRestart(vector<Company> &vect)
@@ -62,36 +92,36 @@ void randomRestart(vector<Company> &vect)
 
 int hillclimbing(vector <Company> companies)
 {
-	Company x;
 	bool onRestart = false;
 	int timesEvale = 0;
 	int randomRestartTry = 100;
 	vector <Company> companiesHighscore = companies;
-	float highscore = x.Baseline(companies);
+	float highscore = Baseline(companies);
 	int timesRestart = 0;
 	while (timesRestart < randomRestartTry)
 	{
-		float base = x.Baseline(companies);
+		float base = Baseline(companies);
 		int xMove = 0;
 		int yMove = 0;
-		int bestMove = base;
-		for (int i = 0; i++; i < 10)
+		float bestMove = base;
+		for (int i = 0; i < 10; i++)
 		{
-			for (int j = 0; j++; j < 10)
+			for (int j = 0; j < 10; j++)
 			{
 				if (i != j)
 				{
-					float move = x.evaluateMove(base, companies[i], companies[j]);
+					float move = evaluateMove(base, companies[i], companies[j]);
 					if (move > bestMove)
 					{
 						xMove = i;
 						yMove = j;
+						bestMove = move;
 					}
 				}
 			}
 		}
-		x.moveCapital(companies[xMove], companies[yMove]);
-		base = x.Baseline(companies);
+		moveCapital(companies[xMove], companies[yMove]);
+		base = Baseline(companies);
 		if (base > highscore)
 		{
 			highscore = base;
@@ -116,7 +146,7 @@ int hillclimbing(vector <Company> companies)
 	cout << "According to Hillclimbing, the best investment stradegy is:" << endl;
 	for (int i = 0; i < 10; ++i)
 	{
-		cout << companies[i].getName() << " with " << companies[i].getCapital() << endl;
+		cout << companiesHighscore[i].getName() << " with " << companiesHighscore[i].getCapital() << endl;
 	}
 	return timesEvale;
 }

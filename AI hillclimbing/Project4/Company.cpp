@@ -48,14 +48,14 @@ string Company::getName()
 	return Name;
 }
 
-void Company::moveCapital(Company x, Company y)
+/*void Company::moveCapital(Company x, Company y)
 //moves the money once the move is selected
 {
 	float x1 = (x.getCapital() - 100);
 	x.setCapital(x1);
 	float y1 = (y.getCapital() + 100);
 	y.setCapital(y1);
-}
+}*/
 
 float Company::profit()
 //returns the money made by each company
@@ -63,7 +63,7 @@ float Company::profit()
 	return (Capital * Change);
 }
 
-float Company::Baseline(vector<Company> vect)
+/*float Company::Baseline(vector<Company> vect)
 //creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
 {
 	float p = 0;
@@ -72,7 +72,7 @@ float Company::Baseline(vector<Company> vect)
 		p += vect[i].profit();
 	}
 	return p;
-}
+}*/
 
 float Company::totalCap(vector<Company> vect)
 //gets the total capital for the vector
@@ -84,8 +84,7 @@ float Company::totalCap(vector<Company> vect)
 	}
 	return p;
 }
-
-float Company::evaluateMove(float base, Company x, Company y)
+/*float Company::evaluateMove(float base, Company x, Company y)
 //returns the new total profit value of the move
 {
 	float nBase = (base - x.profit() - y.profit());
@@ -93,7 +92,7 @@ float Company::evaluateMove(float base, Company x, Company y)
 	float yProfit = (y.getChange() * (y.getCapital() + 100));
 	nBase = nBase + xProfit + yProfit;
 	return nBase;
-}
+}*/
 
 Company::~Company()
 {
