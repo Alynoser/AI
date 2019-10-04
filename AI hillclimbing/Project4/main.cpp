@@ -83,7 +83,16 @@ void randomRestart(vector<Company> &vect)
 			if (currCapTotal < totalAllowCap && i != 9)
 			{
 				initCapital = (rand() % 15) * 100; //Get random number between 0-1500
-				vect[i].setCapital(initCapital);
+				if (currCapTotal + initCapital > totalAllowCap)
+				{
+					vect[i].setCapital(totalAllowCap - currCapTotal);
+					currCapTotal = totalAllowCap;
+				}
+				else
+				{
+					vect[i].setCapital(initCapital);
+				}
+				
 			}
 			else if (currCapTotal < totalAllowCap && i == 9)
 			{
@@ -221,19 +230,23 @@ void annealing(int tryAllowed, vector <Company> companies)
 		}
 		trys++;
 	}
-	cout << "According to Aneeling, the best investment stradegy is:" << endl;
+	cout << "According to Simulated Annealing, the best investment stradegy is:" << endl;
 	for (int i = 0; i < 10; ++i)
 	{
 		cout << companiesHighscore[i].getName() << " with " << companiesHighscore[i].getCapital() << endl;
 	}
 	cout << "With a total return of " << highscore << endl;
 }
+
 int main(int argc, char *argv[])
 {
 	srand(time(NULL));
 	vector<Company> companies;
+	vector<Company> otemp;
+	vector<int> nums;
 	string file;
 	string line = "";
+	int count = 0;
 	if (argc > 0)
 	{
 		// file = argv[1];
@@ -246,8 +259,37 @@ int main(int argc, char *argv[])
 			float var1;
 			ss >> name >> var1;
 			Company temp(name, 1000, var1);
-			companies.push_back(temp);
+			otemp.push_back(temp);
 		}
+		while (count != 10)
+		{
+			bool found = true;
+			int i = rand() % 30;
+			if (count == 0)
+			{
+				nums.push_back(i);
+				companies.push_back(otemp[i]);
+				count++;
+			}
+			else
+			{
+				for (int j = 0; j < nums.size(); ++j)
+				{
+					if (nums[j] == i)
+					{
+						found = false;
+					}
+				}
+				if (found)
+				{
+					nums.push_back(i);
+					companies.push_back(otemp[i]);
+					count++;
+				}
+			}
+
+		}
+		cout << "The TFB's recomended stragedy will net a total of " << Baseline(companies) << endl;
 		vector<Company> companies2 = companies;
 		int i = hillclimbing(companies);
 		annealing(i, companies2);
