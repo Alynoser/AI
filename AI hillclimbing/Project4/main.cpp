@@ -17,7 +17,7 @@ float totalAllowCap = 10000;
 //Purpose: Set all companies capitals to zero
 //Input: a vector of Companies
 //Output: NA
-float Baseline(vector<Company> vect)
+double Baseline(vector<Company> vect)
 //creates the base profit made my the companys in the vector. Creates a baseline to find the most optimal move
 {
 	float p = 0;
@@ -124,7 +124,7 @@ int hillclimbing(vector <Company> companies)
 				if (i != j)
 				{
 					float move = evaluateMove(base, companies[i], companies[j]);
-					if (move > bestMove)
+					if ((move > bestMove) && (companies[i].getCapital() != 0))
 					{
 						xMove = i;
 						yMove = j;
@@ -153,6 +153,7 @@ int hillclimbing(vector <Company> companies)
 			onRestart = true;
 
 		}
+		
 
 		timesEvale++;
 	}
@@ -161,9 +162,72 @@ int hillclimbing(vector <Company> companies)
 	{
 		cout << companiesHighscore[i].getName() << " with " << companiesHighscore[i].getCapital() << endl;
 	}
+	cout << "With a total return of " <<highscore << endl;
 	return timesEvale;
 }
 
+void annealing(int tryAllowed, vector <Company> companies)
+{
+	int temp = 9001;
+	bool move = false;
+	vector <Company> companiesHighscore = companies;
+	float highscore = Baseline(companies);
+	int trys = 0;
+	while (trys < tryAllowed)
+	{
+		float base = Baseline(companies);
+		int xMove = 0;
+		int yMove = 0;
+		float bestMove = base;
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				if (i != j)
+				{
+					float move = evaluateMove(base, companies[i], companies[j]);
+					float random = rand();
+					float annel = exp(-(move - base) / temp);
+					if ((annel > random) && (companies[i].getCapital() != 0))
+					{
+						moveCapital(companies, i, j);
+						move = true;
+						temp = temp * .95;
+					}
+					if ((move > bestMove) && (companies[i].getCapital() != 0))
+					{
+						xMove = i;
+						yMove = j;
+						bestMove = move;
+					}
+
+				}
+			}
+			if (move)
+			{
+				break;
+			}
+		}
+		if (!move)
+		{
+			moveCapital(companies, xMove, yMove);
+		}
+		move = false;
+		base = Baseline(companies);
+		if (base > highscore)
+		{
+			highscore = base;
+			companiesHighscore = companies;
+		}
+		trys++;
+	}
+	cout << "According to Aneeling, the best investment stradegy is:" << endl;
+	for (int i = 0; i < 10; ++i)
+	{
+		cout << companiesHighscore[i].getName() << " with " << companiesHighscore[i].getCapital() << endl;
+	}
+	cout << "With a total return of " << highscore << endl;
+}
 int main(int argc, char *argv[])
 {
 	srand(time(NULL));
@@ -184,8 +248,12 @@ int main(int argc, char *argv[])
 			Company temp(name, 1000, var1);
 			companies.push_back(temp);
 		}
+		vector<Company> companies2 = companies;
 		int i = hillclimbing(companies);
+		annealing(i, companies2);
+		int input;
+		cin >> input;
 	}
-
+	
 	return 0;
 }
