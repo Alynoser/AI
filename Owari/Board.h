@@ -7,7 +7,7 @@ class Board
 {
 private:
 	bool humansTurn;
-	int pit[13];
+	int pit[14];
 public:
 	// Board(): Initilizes player pits to 3 & Sets humansTurn to true
 	Board();
@@ -16,7 +16,7 @@ public:
 	bool getTurn();
 
 	// setTurn(char): Takes a char "n/N or y/Y" and sets humansTurn appropriately
-	void setTurn(char whoseTurn);
+	void setTurn();
 
 	// getPitCount(int): Takes an index(pit), returns the amount of 'stones' in said pit 
 	int getPitCount(int pitIndex);
@@ -29,11 +29,12 @@ public:
 	void move(int pitNumber);
 
 	// decides if it does a captures
-	void capture(pitNumber);
+	void capture(int pitNumber);
 	// gets the next move in the board
 	int getNextPitNum(int pitNumber);
 	// whoMovesFirst(): An interactive function that asks the user to input 'y' or 'n', 
 	//					depending on if they want to move first. Checks case sensitivity
 	//					and reprompts until a valid argument is entered
 	void whoMovesFirst();
+
 };

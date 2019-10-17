@@ -57,7 +57,7 @@ int Board::getPitCount(int pitIndex)
 // Sets an index in the pit array to the value specified by pitCount
 void Board::setPitCount(int pitIndex, int pitCount)
 {
-	if(pitCount <= 0)
+	if(pitCount >= 0)
 		pit[pitIndex] = pitCount;
 	else
 	{
@@ -74,14 +74,14 @@ void Board::whoMovesFirst()
 	char i;
 	bool prompt = true;
 
-	while(propt)
+	while(prompt)
 	{
 		cout << "Would you like to move first? (y/n)";
 		cin >> i;
 		if(tolower(i) != 'y' || tolower(i) != 'n')
-			propt = true;
+			prompt = true;
 		else
-			propt = false;
+			prompt = false;
 	}
 
 	if (tolower(i) == 'y')
@@ -90,6 +90,7 @@ void Board::whoMovesFirst()
 		humansTurn = false;
 }
 
+// given a position on the board, will move the beads until it runs out
 void Board::move(int pitNumber)
 {
 	int pitCount = getPitCount(pitNumber);
@@ -97,26 +98,26 @@ void Board::move(int pitNumber)
 	pitNumber = getNextPitNum(pitNumber);
 	while(pitCount != 0)
 	{
-		if(getTurn && pitNumber == 7)
+		if(getTurn() && pitNumber == 7)
 		{
-			pitNumber = getNextPitNum();
+			pitNumber = getNextPitNum(pitNumber);
 		}
-		else if(!getTurn && pitNumber == 13)
+		else if(!getTurn() && pitNumber == 13)
 		{
-			pitNumber = getNextPitNum();
+			pitNumber = getNextPitNum(pitNumber);
 		}
 		setPitCount(pitNumber, (getPitCount(pitNumber) + 1));
 		pitCount--;
 		if (pitCount != 0)
 		{
-			pitNumber = getNextPitNum();
+			pitNumber = getNextPitNum(pitNumber);
 		}
 	}
 	capture(pitNumber);
 }
 
-
-void Board::capture(pitNumber)
+// checks and sees if the last move makes a captures
+void Board::capture(int pitNumber)
 {
 	//spots 7 - 12
 	if (getTurn())
@@ -130,21 +131,27 @@ void Board::capture(pitNumber)
 					case 7:
 						setPitCount(13, (getPitCount(13) + getPitCount(5)));
 						setPitCount(5, 0);
+						break;
 					case 8:
 						setPitCount(13, (getPitCount(13) + getPitCount(4)));
 						setPitCount(4, 0);
+						break;
 					case 9:
 						setPitCount(13, (getPitCount(13) + getPitCount(3)));
 						setPitCount(3, 0);
+						break;
 					case 10:
 						setPitCount(13, (getPitCount(13) + getPitCount(2)));
 						setPitCount(2, 0);
+						break;
 					case 11:
 						setPitCount(13, (getPitCount(13) + getPitCount(1)));
 						setPitCount(1, 0);
+						break;
 					case 12:
 						setPitCount(13, (getPitCount(13) + getPitCount(0)));
 						setPitCount(0, 0);
+						break;
 				}
 			}
 		}
@@ -161,27 +168,34 @@ void Board::capture(pitNumber)
 					case 0:
 						setPitCount(6, (getPitCount(6) + getPitCount(12)));
 						setPitCount(12, 0);
+						break;
 					case 1:
 						setPitCount(6, (getPitCount(6) + getPitCount(11)));
 						setPitCount(11, 0);
+						break;
 					case 2:
 						setPitCount(6, (getPitCount(6) + getPitCount(10)));
 						setPitCount(10, 0);
+						break;
 					case 3:
 						setPitCount(6, (getPitCount(6) + getPitCount(9)));
 						setPitCount(9, 0);
+						break;
 					case 4:
 						setPitCount(6, (getPitCount(6) + getPitCount(8)));
 						setPitCount(8, 0);
+						break;
 					case 5:
 						setPitCount(6, (getPitCount(6) + getPitCount(7)));
 						setPitCount(7, 0);
+						break;
 				}
 			}
 		}
 	}
 }
 
+// gets the next move on the board
 int Board::getNextPitNum(int pitNumber)
 {
 	switch(pitNumber)
@@ -219,3 +233,4 @@ int Board::getNextPitNum(int pitNumber)
 			exit(0);
 	}
 }
+
