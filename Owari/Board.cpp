@@ -12,10 +12,9 @@ using namespace std;
 Board::Board()
 {	
 	humansTurn = true;
-	pitNumber = 13;
-	for(int i = 0; i <= pitNumber; i++)
+	for(int i = 0; i <= 13; i++)
 	{
-		if(i != 0 && i != 7)
+		if(i != 6 && i != 13)
 		{
 			pit[i] = 3;
 		}
@@ -36,17 +35,12 @@ bool Board::getTurn()
 // setTurn(bool)
 // Changes humansTurn depending on input. y/Y will set humansTurn to true, n/N 
 // 		will set humansTurn to false
-void Board::setTurn(char whoseTurn)
+void Board::setTurn()
 {
-	if(tolower(whoseTurn) == 'y')
-		humansTurn = true;
-	else if(tolower(whoseTurn) == 'n')
+	if(humansTurn)
 		humansTurn = false;
-	else
-	{
-		cout << "Invalid character. Program terminating.\n";
-		exit(0);
-	}
+	else //(!humanTurn)
+		humansTurn= true;
 }
 
 // getPitCount(int)
@@ -70,6 +64,30 @@ void Board::setPitCount(int pitIndex, int pitCount)
 		cout << "Invalid stone count. Program terminating.\n";
 		exit(0);
 	}
+}
+
+// whoMovesFirst()
+// A function that prompts the user to enter who they want to move first.
+// Sets the turn to the users choice
+void Board::whoMovesFirst()
+{
+	char i;
+	bool prompt = true;
+
+	while(propt)
+	{
+		cout << "Would you like to move first? (y/n)";
+		cin >> i;
+		if(tolower(i) != 'y' || tolower(i) != 'n')
+			propt = true;
+		else
+			propt = false;
+	}
+
+	if (tolower(i) == 'y')
+		humansTurn = true;
+	else // (tolower(i) == 'n')
+		humansTurn = false;
 }
 
 void Board::move(int pitNumber)
