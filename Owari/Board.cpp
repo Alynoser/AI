@@ -26,15 +26,14 @@ Board::Board()
 }
 
 // getTurn()
-// Returns true if it is the human players turn and false if it is the AI's turn
+// Returns true if it is the human players (north) turn and false if it is the AI's (south) turn
 bool Board::getTurn()
 {
 	return humansTurn;
 }
 
-// setTurn(bool)
-// Changes humansTurn depending on input. y/Y will set humansTurn to true, n/N 
-// 		will set humansTurn to false
+// setTurn()
+// Will switch the turns depending on what it is.
 void Board::setTurn()
 {
 	if(humansTurn)
@@ -78,10 +77,9 @@ void Board::whoMovesFirst()
 	{
 		cout << "Would you like to move first? (y/n)";
 		cin >> i;
-		if(tolower(i) != 'y' || tolower(i) != 'n')
-			prompt = true;
-		else
-			prompt = false;
+
+		if(tolower(i) == 'y' || tolower(i) == 'n')
+			propt = false;
 	}
 
 	if (tolower(i) == 'y')
@@ -234,3 +232,42 @@ int Board::getNextPitNum(int pitNumber)
 	}
 }
 
+
+// getHumanPlayerMove()
+// Asks the user to enter which pit they would like to move (1-6, player must assume they
+// 		are on the correct side of the board) and makes a call to move on that position.
+void getHumanPlayerMove()
+{
+	bool prompt = true;
+	int pit;
+	while(prompt)
+	{
+		cout << "Please enter a pit to move from (1-6).\n";
+		cin >> pit;
+		if(pit >= 1 || pit <= 6)
+			prompt = false;
+	}
+
+	switch(pit)
+	{
+		case 1:
+			pit = 7;
+			break;
+		case 2:
+			pit = 8;
+			break;
+		case 3:
+			pit = 9;
+			break;
+		case 4:
+			pit = 10;
+			break;
+		case 5:
+			pit = 11;
+			break;
+		case 6:
+			pit = 12;
+			break;
+	}
+	move(pit);
+}
