@@ -97,19 +97,89 @@ void Board::move(int pitNumber)
 	pitNumber = getNextPitNum(pitNumber);
 	while(pitCount != 0)
 	{
-		setPitCount(pitNumber, getPitCount(pitNumber) + 1);
+		if(getTurn && pitNumber == 7)
+		{
+			pitNumber = getNextPitNum();
+		}
+		else if(!getTurn && pitNumber == 13)
+		{
+			pitNumber = getNextPitNum();
+		}
+		setPitCount(pitNumber, (getPitCount(pitNumber) + 1));
 		pitCount--;
 		if (pitCount != 0)
 		{
 			pitNumber = getNextPitNum();
 		}
 	}
+	capture(pitNumber);
 }
 
 
-void Board::capture()
+void Board::capture(pitNumber)
 {
-	
+	//spots 7 - 12
+	if (getTurn())
+	{
+		if (pitNumber >= 7 && pitNumber <= 12)
+		{
+			if (getPitCount(pitNumber) == 1)
+			{
+				switch(pitNumber)
+				{
+					case 7:
+						setPitCount(13, (getPitCount(13) + getPitCount(5)));
+						setPitCount(5, 0);
+					case 8:
+						setPitCount(13, (getPitCount(13) + getPitCount(4)));
+						setPitCount(4, 0);
+					case 9:
+						setPitCount(13, (getPitCount(13) + getPitCount(3)));
+						setPitCount(3, 0);
+					case 10:
+						setPitCount(13, (getPitCount(13) + getPitCount(2)));
+						setPitCount(2, 0);
+					case 11:
+						setPitCount(13, (getPitCount(13) + getPitCount(1)));
+						setPitCount(1, 0);
+					case 12:
+						setPitCount(13, (getPitCount(13) + getPitCount(0)));
+						setPitCount(0, 0);
+				}
+			}
+		}
+	}
+	//spots 0 - 5
+	else
+	{
+		if (pitNumber >= 0 && pitNumber <= 5)
+		{
+			if (getPitCount(pitNumber) == 1)
+			{
+				switch(pitNumber)
+				{
+					case 0:
+						setPitCount(6, (getPitCount(6) + getPitCount(12)));
+						setPitCount(12, 0);
+					case 1:
+						setPitCount(6, (getPitCount(6) + getPitCount(11)));
+						setPitCount(11, 0);
+					case 2:
+						setPitCount(6, (getPitCount(6) + getPitCount(10)));
+						setPitCount(10, 0);
+					case 3:
+						setPitCount(6, (getPitCount(6) + getPitCount(9)));
+						setPitCount(9, 0);
+					case 4:
+						setPitCount(6, (getPitCount(6) + getPitCount(8)));
+						setPitCount(8, 0);
+					case 5:
+						setPitCount(6, (getPitCount(6) + getPitCount(7)));
+						setPitCount(7, 0);
+				}
+			}
+		}
+	}
 }
 
 int Board::getNextPitNum(int pitNumber)
