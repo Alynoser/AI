@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// Board: initializer
+// Board: Constructor
 Board::Board()
 {	
 	humansTurn = true;

@@ -15,7 +15,6 @@ public:
 	// getTurn(): Returns true if it is the humans turn, false if its the AI's turn
 	bool getTurn();
 
-
 	// setTurn(): Switches the current players turn
 	void setTurn();
 
