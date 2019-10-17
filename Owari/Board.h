@@ -23,4 +23,8 @@ public:
 	void setPitCount(int pitIndex, int pitCount);
 	// move(): Stay Posted
 	void move();
+	// decides if it does a captures
+	void capture(pitNumber);
+	// gets the next move in the board
+	int getNextPitNum(int pitNumber);
 };
