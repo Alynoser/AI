@@ -43,4 +43,9 @@ public:
 	//						 (1-6) on their side. Player must assume that they are on the
 	// 						 correct side of the board.
 	void getHumanPlayerMove();
+
+	// endOfGame(): Checks to see if the game has ended by checking the North and South 
+	//				pits. If any one direction is empty, the function returns true,
+	//				otherwise it returns false.
+	bool endOfGame();
 };

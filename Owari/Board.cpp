@@ -271,3 +271,16 @@ void getHumanPlayerMove()
 	}
 	move(pit);
 }
+
+// endOfGame()
+// Check all "active" pits on either players side (individually)
+//	if one side is empty, the game is over
+//	Returns true if any one side has a full row of empty pits and false otherwise.
+bool Board::endOfGame()
+{
+	// TODO: write the shit
+	int isEnd = false;
+	// if all south side || all north side pits are empty
+	//		isEnd = true
+	return isEnd;
+}
