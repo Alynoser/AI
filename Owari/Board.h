@@ -26,8 +26,12 @@ public:
 	void setPitCount(int pitIndex, int pitCount);
 
 	// move(): Stay Posted
-	void move();
+	void move(int pitNumber);
 
+	// decides if it does a captures
+	void capture(pitNumber);
+	// gets the next move in the board
+	int getNextPitNum(int pitNumber);
 	// whoMovesFirst(): An interactive function that asks the user to input 'y' or 'n', 
 	//					depending on if they want to move first. Checks case sensitivity
 	//					and reprompts until a valid argument is entered

@@ -90,7 +90,62 @@ void Board::whoMovesFirst()
 		humansTurn = false;
 }
 
-void Board::move()
+void Board::move(int pitNumber)
 {
-	//TODO
+	int pitCount = getPitCount(pitNumber);
+	setPitCount(pitNumber, 0);
+	pitNumber = getNextPitNum(pitNumber);
+	while(pitCount != 0)
+	{
+		setPitCount(pitNumber, getPitCount(pitNumber) + 1);
+		pitCount--;
+		if (pitCount != 0)
+		{
+			pitNumber = getNextPitNum();
+		}
+	}
+}
+
+
+void Board::capture()
+{
+	
+}
+
+int Board::getNextPitNum(int pitNumber)
+{
+	switch(pitNumber)
+	{
+		case 0:
+			return 1;
+		case 1:
+			return 2;
+		case 2:
+			return 3;
+		case 3:
+			return 4;
+		case 4:
+			return 5;
+		case 5:
+			return 6;
+		case 6:
+			return 7;
+		case 7:
+			return 8;
+		case 8:
+			return 9;
+		case 9:
+			return 10;
+		case 10:
+			return 11;
+		case 11:
+			return 12;
+		case 12:
+			return 13;
+		case 13:
+			return 0;
+		default:
+			cout << "Invalid pitNumber. Program terminating.\n" << endl;
+			exit(0);
+	}
 }
