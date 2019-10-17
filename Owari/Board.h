@@ -7,13 +7,14 @@ class Board
 {
 private:
 	bool humansTurn;
-	int pit[13];
+	int pit[14];
 public:
 	// Board(): Initilizes player pits to 3 & Sets humansTurn to true
 	Board();
 	
 	// getTurn(): Returns true if it is the humans turn, false if its the AI's turn
 	bool getTurn();
+
 
 	// setTurn(): Switches the current players turn
 	void setTurn();
@@ -29,7 +30,7 @@ public:
 	void move(int pitNumber);
 
 	// decides if it does a captures
-	void capture(pitNumber);
+	void capture(int pitNumber);
 
 	// gets the next move in the board
 	int getNextPitNum(int pitNumber);
