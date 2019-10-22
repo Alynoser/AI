@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Board.h"
 #include <stdlib.h>
+#include "Node.h"
+#include "Tree.h"
 
 using namespace std;
 
@@ -42,7 +44,15 @@ void runGame(Board newBoard)
 int main()
 {
 	Board newBoard;
+	Board boardArray[50];
+	for(int i = 0; i < 50; ++i)
+	{
+		boardArray[i] = newBoard.copyBoard(newBoard);
+	}
+	for(int i = 0; i < 50; ++i)
+	{
+		
+	}
 	runGame(newBoard);
-
 	return 0;
 }

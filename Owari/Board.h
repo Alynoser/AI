@@ -51,4 +51,7 @@ public:
 
 	// printBoard(): Prints a board that users can visually see
 	void printBoard();
+
+	//copyBoard(): takes a board object, and returns a copy of that object
+	Board copyBoard(Board newBoard);
 };

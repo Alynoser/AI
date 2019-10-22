@@ -320,3 +320,9 @@ void Board::printBoard()
 		cout << endl;
 	}
 }
+
+Board Board::copyBoard(Board newBoard)
+{
+	Board newnewBoard = newBoard;
+	return newnewBoard;
+}
