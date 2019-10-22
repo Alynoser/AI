@@ -320,13 +320,13 @@ void Board::printBoard()
 		cout << endl;
 	}
 }
-<<<<<<< HEAD
 
 Board Board::copyBoard(Board newBoard)
 {
 	Board newnewBoard = newBoard;
 	return newnewBoard;
-=======
+}
+
 bool Board::canCapture(int pitNumber)
 {
 	int pits = pit[pitNumber];
@@ -337,13 +337,14 @@ bool Board::canCapture(int pitNumber)
 	}
 	if (pit[nextPits] == 0)
 	{
-		reutrn true;
+		return true;
 	}
 	else
 	{
 		return false;
 	}
 }
+
 int Board::captureSize(int pitNumber)
 {
 	if (pitNumber == 0)
@@ -378,7 +379,6 @@ int Board::captureSize(int pitNumber)
 	{
 		return pit[4];
 	}
-	
 	else if (pitNumber == 9)
 	{
 		return pit[3];
@@ -400,6 +400,7 @@ int Board::captureSize(int pitNumber)
 		cout << "Damn son, you fucked up" << endl;
 	}
 }
+
 bool Board::isFucked(int startPit)
 {
 	for (int i = startPit; i < 5; i++)
@@ -414,6 +415,7 @@ bool Board::isFucked(int startPit)
 	}
 	return true;
 }
+
 int Board::getMyPoints()
 {
 	return pit[6];
@@ -422,5 +424,4 @@ int Board::getMyPoints()
 int Board::getPlayerPoints()
 {
 	return pit[13];
->>>>>>> master
 }
