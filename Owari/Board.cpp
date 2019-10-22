@@ -311,5 +311,13 @@ void Board::printBoard()
 		{char(pit[13]), ' ', ' ', ' ', ' ', ' ', ' ', char(pit[6])},
 		{' ', char(pit[0]), char(pit[1]), char(pit[2]), char(pit[3]), char(pit[4]), char(pit[5]), ' '},
 	}
-	cout << playBoard << endl;
+	
+	for(int i = 0; i <= 3; i++)
+	{
+		for(int j = 0; j <= 8; j++)
+		{
+			cout << playBoard[i][j];
+		}
+		cout << endl;
+	}
 }
