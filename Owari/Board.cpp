@@ -307,9 +307,9 @@ bool Board::endOfGame()
 void Board::printBoard()
 {
 	char playBoard[3][8] = {
-		{' ', char(pit[12]), char(pit[11]), char(pit[10]), char(pit[9]), char(pit[8]), char(pit[7]), ' '},
-		{char(pit[13]), ' ', ' ', ' ', ' ', ' ', ' ', char(pit[6])},
-		{' ', char(pit[0]), char(pit[1]), char(pit[2]), char(pit[3]), char(pit[4]), char(pit[5]), ' '},
+		{' ', pit[12] + 48, pit[11] + 48, pit[10] + 48, pit[9] + 48, pit[8] + 48, pit[7] + 48, ' '},
+		{ pit[13] + 48, ' ', ' ', ' ', ' ', ' ', ' ',  pit[6] + 48},
+		{' ', pit[0] + 48, pit[1] + 48, pit[2] + 48, pit[3] + 48, pit[4] + 48, pit[5] + 48, ' '},
 	}
 	
 	for(int i = 0; i <= 3; i++)
