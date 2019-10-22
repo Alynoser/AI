@@ -315,7 +315,7 @@ void Board::printBoard()
 	{
 		for(int j = 0; j <= 8; j++)
 		{
-			cout << playBoard[i][j];
+			cout << playBoard[i][j] << ' ';
 		}
 		cout << endl;
 	}
