@@ -39,7 +39,7 @@ void Board::setTurn()
 	if(humansTurn)
 		humansTurn = false;
 	else //(!humanTurn)
-		humansTurn= true;
+		humansTurn = true;
 }
 
 // getPitCount(int)
@@ -79,7 +79,7 @@ void Board::whoMovesFirst()
 		cin >> i;
 
 		if(tolower(i) == 'y' || tolower(i) == 'n')
-			propt = false;
+			prompt = false;
 	}
 
 	if (tolower(i) == 'y')

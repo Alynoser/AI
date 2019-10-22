@@ -1,35 +1,41 @@
 #include <iostream>
 #include "Board.h"
+#include <stdlib.h>
 
 using namespace std;
+
+void runGame(Board newBoard)
+{
+	system("clear");
+	int pitnum = 0;
+	newBoard.whoMovesFirst();
+	while(!newBoard.endOfGame())
+	{
+		//humans turn
+		if(newBoard.getTurn())
+		{	
+			cout << "Please enter pit num to move" << endl;
+			cin >> pitnum;
+			newBoard.move(pitnum);
+			newBoard.setTurn();
+		}
+		//computer turn
+		else
+		{
+			//pitnum = ryans code
+			newBoard.move(pitnum);
+			newBoard.setTurn();
+		}
+	}
+
+}
 
 int main()
 {
 	Board newBoard;
 
 	cout << newBoard.getTurn();
-	for(int i = 0; i < 14; i++)
-	{
-		cout << "Pit: " << i;
-		cout << " has " << newBoard.getPitCount(i);
-		cout << " stones.\n";
-	}
-
-	newBoard.move(0);
-	for(int i = 0; i < 14; i++)
-	{
-		cout << "Pit: " << i;
-		cout << " has " << newBoard.getPitCount(i);
-		cout << " stones.\n";
-	}
-
-	Board newnewBoard = newBoard;
-	for(int i = 0; i < 14; i++)
-	{
-		cout << "Pit: " << i;
-		cout << " has " << newnewBoard.getPitCount(i);
-		cout << " stones.\n";
-	}
+	runGame(newBoard);
 
 	return 0;
 }
