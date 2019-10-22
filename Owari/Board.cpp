@@ -320,9 +320,107 @@ void Board::printBoard()
 		cout << endl;
 	}
 }
+<<<<<<< HEAD
 
 Board Board::copyBoard(Board newBoard)
 {
 	Board newnewBoard = newBoard;
 	return newnewBoard;
+=======
+bool Board::canCapture(int pitNumber)
+{
+	int pits = pit[pitNumber];
+	int nextPit = pits + pitNumber;
+	if (next > 13)
+	{
+		nextPits = nextPits - 14;
+	}
+	if (pit[nextPits] == 0)
+	{
+		reutrn true;
+	}
+	else
+	{
+		return false;
+	}
+}
+int Board::captureSize(int pitNumber)
+{
+	if (pitNumber == 0)
+	{
+		return pit[12];
+	}
+	else if (pitNumber == 1)
+	{
+		return pit[11];
+	}
+	else if (pitNumber == 2)
+	{
+		return pit[10];
+	}
+	else if (pitNumber == 3)
+	{
+		return pit[9];
+	}
+	else if (pitNumber == 4)
+	{
+		return pit[8];
+	}
+	else if (pitNumber == 5)
+	{
+		return pit[7];
+	}
+	else if (pitNumber == 7)
+	{
+		return pit[5];
+	}
+	else if (pitNumber == 8)
+	{
+		return pit[4];
+	}
+	
+	else if (pitNumber == 9)
+	{
+		return pit[3];
+	}
+	else if (pitNumber == 10)
+	{
+		return pit[2];
+	}
+	else if (pitNumber == 11)
+	{
+		return pit[1];
+	}
+	else if (pitNumber == 12)
+	{
+		return pit[0];
+	}
+	else
+	{
+		cout << "Damn son, you fucked up" << endl;
+	}
+}
+bool Board::isFucked(int startPit)
+{
+	for (int i = startPit; i < 5; i++)
+	{
+		if (canCapture(i)
+		{
+			if (captureSize(i) != 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+int Board::getMyPoints()
+{
+	return pit[6];
+}
+
+int Board::getPlayerPoints()
+{
+	return pit[13];
+>>>>>>> master
 }

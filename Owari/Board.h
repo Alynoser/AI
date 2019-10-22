@@ -52,6 +52,23 @@ public:
 	// printBoard(): Prints a board that users can visually see
 	void printBoard();
 
+<<<<<<< HEAD
 	//copyBoard(): takes a board object, and returns a copy of that object
 	Board copyBoard(Board newBoard);
+=======
+	// sees if a pit can capture another pit
+	bool canCapture(int pitNumber);
+	
+	//finds the value of the captureable pit
+	int captureSize(int pitNumber);
+
+	//checks to see if the player is in a bad situation
+	bool isFucked(int startPit);
+
+	//gets the computers points
+	int getMyPoints();
+
+	//gets the players points
+	int getPlayerPoints();
+>>>>>>> master
 };

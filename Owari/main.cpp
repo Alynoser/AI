@@ -6,6 +6,40 @@
 
 using namespace std;
 
+int Evaluate(Board x)
+{
+	int evaluatePoints = 0;
+	evaluatePoints = evaluatePoints + x.getMyPoints() - x.getPlayerPoints();
+	for (int i = 0; i < 5; i++)
+	{
+		if (x.canCapture(i))
+		{
+			if (x.captureSize(i) != 0)
+			{
+				evaluatePoints = evaluatePoints + 3;
+			}
+		}
+	}
+	for (int i = 7; i < 12; i++)
+	{
+		if (x.canCapture(i))
+		{
+			if (x.captureSize(i) != 0)
+			{
+				evaluatePoints = evaluatePoints - 3;
+			}
+		}
+	}
+	if (x.isFucked(7))
+	{
+		evaluatePoints = evaluatePoints + 10;
+	}
+	if (x.isFucked(0))
+	{
+		evaluatePoints = 0;
+	}
+	return evaluatePoints;
+}
 void runGame(Board newBoard)
 {
 	int pitnum = 0;
