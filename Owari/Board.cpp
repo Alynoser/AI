@@ -320,6 +320,13 @@ void Board::printBoard()
 		cout << endl;
 	}
 }
+<<<<<<< HEAD
+
+Board Board::copyBoard(Board newBoard)
+{
+	Board newnewBoard = newBoard;
+	return newnewBoard;
+=======
 bool Board::canCapture(int pitNumber)
 {
 	int pits = pit[pitNumber];
@@ -415,4 +422,5 @@ int Board::getMyPoints()
 int Board::getPlayerPoints()
 {
 	return pit[13];
+>>>>>>> master
 }
