@@ -48,4 +48,7 @@ public:
 	//				pits. If any one direction is empty, the function returns true,
 	//				otherwise it returns false.
 	bool endOfGame();
+
+	// printBoard(): Prints a board that users can visually see
+	void printBoard();
 };

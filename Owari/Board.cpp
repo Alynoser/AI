@@ -303,3 +303,13 @@ bool Board::endOfGame()
 	}
 	return isEnd;
 }
+
+void Board::printBoard()
+{
+	char playBoard[3][8] = {
+		{' ', char(pit[12]), char(pit[11]), char(pit[10]), char(pit[9]), char(pit[8]), char(pit[7]), ' '},
+		{char(pit[13]), ' ', ' ', ' ', ' ', ' ', ' ', char(pit[6])},
+		{' ', char(pit[0]), char(pit[1]), char(pit[2]), char(pit[3]), char(pit[4]), char(pit[5]), ' '},
+	}
+	cout << playBoard << endl;
+}
