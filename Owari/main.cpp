@@ -6,11 +6,12 @@ using namespace std;
 
 void runGame(Board newBoard)
 {
-	system("clear");
 	int pitnum = 0;
 	newBoard.whoMovesFirst();
 	while(!newBoard.endOfGame())
 	{
+		system("clear");
+		newBoard.printBoard();
 		//humans turn
 		if(newBoard.getTurn())
 		{	
