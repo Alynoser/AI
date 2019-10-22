@@ -278,9 +278,28 @@ void getHumanPlayerMove()
 //	Returns true if any one side has a full row of empty pits and false otherwise.
 bool Board::endOfGame()
 {
-	// TODO: write the shit
 	int isEnd = false;
-	// if all south side || all north side pits are empty
-	//		isEnd = true
+	if((pit[0] == 0 && pit[1] == 0 && pit[2] == 0 && pit[3] == 0 && pit[4] == 0 
+		&& pit[5] == 0))
+	{
+		isEnd = true;
+		for(int i = 7; i <= 12; i++)
+		{
+			capture(i);
+		}
+	}
+	else if((pit[7] == 0 && pit[8] == 0 && pit[9] == 0 && pit[10] == 0 
+		&& pit[11] == 0 && pit[12] == 0))
+	{
+		isEnd = true;
+		for(int i = 0; i <= 5; i++)
+		{
+			capture(i);
+		}
+	}
+	else
+	{
+		isEnd = false;
+	}
 	return isEnd;
 }
