@@ -17,6 +17,14 @@ void runGame(Board newBoard)
 		{	
 			cout << "Please enter pit num to move" << endl;
 			cin >> pitnum;
+			if(pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
+			{
+				while(pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
+				{
+					cout << "Please enter a proper value" << endl;
+					cin >> pitnum;
+				}
+			}
 			newBoard.move(pitnum);
 			newBoard.setTurn();
 		}
@@ -34,8 +42,6 @@ void runGame(Board newBoard)
 int main()
 {
 	Board newBoard;
-
-	cout << newBoard.getTurn();
 	runGame(newBoard);
 
 	return 0;
