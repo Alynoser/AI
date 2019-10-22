@@ -3,6 +3,12 @@
 
 using namespace std;
 
+void runGame(Board newBoard)
+{
+	newBoard.whoMovesFirst();
+	
+}
+
 int main()
 {
 	Board newBoard;
@@ -12,22 +18,6 @@ int main()
 	{
 		cout << "Pit: " << i;
 		cout << " has " << newBoard.getPitCount(i);
-		cout << " stones.\n";
-	}
-
-	newBoard.move(0);
-	for(int i = 0; i < 14; i++)
-	{
-		cout << "Pit: " << i;
-		cout << " has " << newBoard.getPitCount(i);
-		cout << " stones.\n";
-	}
-
-	Board newnewBoard = newBoard;
-	for(int i = 0; i < 14; i++)
-	{
-		cout << "Pit: " << i;
-		cout << " has " << newnewBoard.getPitCount(i);
 		cout << " stones.\n";
 	}
 
