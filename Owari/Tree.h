@@ -16,4 +16,9 @@ public:
 	Tree(int depth, Board board);
 
 	void populateTree();
+	// evaluates the tree to find the correct move
+	int evaluateTree();
+	// evaluates the current board state
+	int evaluateBoard(Board x);
+
 };

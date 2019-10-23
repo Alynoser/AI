@@ -75,6 +75,13 @@ void runGame(Board newBoard)
 	}
 
 }
+int FindMove(Board x)
+{
+	Tree tree(0, x);
+	tree.populateTree();
+	int move = tree.evaluateTree();
+	return move;
+}
 
 int main()
 {

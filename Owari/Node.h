@@ -51,6 +51,5 @@ public:
 	void setBoard(Board board);
 
 	int getArry();
-
-	void setArry(int temp)
+	void flipBit();
 };

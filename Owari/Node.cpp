@@ -99,7 +99,30 @@ int Node::getArry()
 	return aray;
 }
 
-void Node::setArry(int temp)
+void Node::flipBit()
 {
-	aray = temp;
+	if (array[0] == 0)
+	{
+		temp = [1, 0, 0, 0, 0, 0];
+	}
+	else if (array[1] == 0)
+	{
+		temp = [1, 1, 0, 0, 0, 0];
+	}
+	else if (array[2] == 0)
+	{
+		temp = [1, 1, 1, 0, 0, 0];
+	}
+	else if (array[3] == 0)
+	{
+		temp = [1, 1, 1, 1, 0, 0];
+	}
+	else if (array[4] == 0)
+	{
+		temp = [1, 1, 1, 1, 1, 0];
+	}
+	else if (array[5] == 0)
+	{
+		temp = [1, 1, 1, 1, 1, 1];
+	}
 }
