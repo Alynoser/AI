@@ -49,4 +49,6 @@ public:
 
 	// setBoard(Board board): Sets current nodes board to board
 	void setBoard(Board board);
+
+	int getArry();
 };
