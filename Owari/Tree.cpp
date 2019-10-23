@@ -5,11 +5,13 @@ using namespace std;
 
 Tree::Tree()
 {
+	root = new Node();
 	depth = 6;
 }
 
 Tree::Tree(int depth1,Board board)
 {
+	root = new Node();
 	if(depth < 0 || depth > 6)
 	{
 		cout << "Depth is being set to 6." << endl;
