@@ -10,12 +10,12 @@ Node::Node()
 	beta = -1;
 }
 
-Node::Node(int depth, Board board)
+Node::Node(int depth, Board board1)
 {
 	depth = depth;
 	alpha = -1;
 	beta = -1;
-	this.board = board;
+	board = board1;
 }
 
 int Node::getDepth()
@@ -89,7 +89,7 @@ void Node::setNode(int num, Node* child)
 		prev_child = child;
 }
 
-void Node::setBoard(Board board)
+void Node::setBoard(Board board1)
 {
-	this.board = board;
+	board = board1;
 }

@@ -40,6 +40,7 @@ int Evaluate(Board x)
 	}
 	return evaluatePoints;
 }
+
 void runGame(Board newBoard)
 {
 	int pitnum = 0;
@@ -78,15 +79,9 @@ void runGame(Board newBoard)
 int main()
 {
 	Board newBoard;
-	Board boardArray[50];
-	for(int i = 0; i < 50; ++i)
-	{
-		boardArray[i] = newBoard.copyBoard(newBoard);
-	}
-	for(int i = 0; i < 50; ++i)
-	{
-		
-	}
-	runGame(newBoard);
+	// runGame(newBoard);
+	Tree temp(2, newBoard);
+	temp.populateTree();
+
 	return 0;
 }

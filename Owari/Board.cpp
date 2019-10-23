@@ -331,11 +331,11 @@ bool Board::canCapture(int pitNumber)
 {
 	int pits = pit[pitNumber];
 	int nextPit = pits + pitNumber;
-	if (next > 13)
+	if (nextPit > 13)
 	{
-		nextPits = nextPits - 14;
+		nextPit = nextPit - 14;
 	}
-	if (pit[nextPits] == 0)
+	if (pit[nextPit] == 0)
 	{
 		return true;
 	}
@@ -405,12 +405,9 @@ bool Board::isFucked(int startPit)
 {
 	for (int i = startPit; i < 5; i++)
 	{
-		if (canCapture(i)
+		if (canCapture(i) && (captureSize(i) != 0))
 		{
-			if (captureSize(i) != 0)
-			{
-				return false;
-			}
+			return false;
 		}
 	}
 	return true;

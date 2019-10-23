@@ -2,7 +2,7 @@
 // Date: Oct 24, 2019
 // board.h
 // Purpose: A header file for board.cpp
-
+#pragma once
 class Board
 {
 private:

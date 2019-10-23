@@ -1,12 +1,12 @@
+#pragma once
 #include "Node.h"
-#include "Tree.h"
 #include "Board.h"
 
 class Tree
 {
 private:
 	int depth;
-	Node* root;
+	Node *root;
 
 public:
 	// Tree(): Initilizes depth to 6
@@ -16,4 +16,4 @@ public:
 	Tree(int depth, Board board);
 
 	void populateTree();
-}
+};
