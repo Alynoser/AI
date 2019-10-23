@@ -7,7 +7,7 @@ private:
 	int depth;
 	int alpha;
 	int beta;
-	bool array[6] = {0, 0, 0, 0, 0, 0};
+	int aray[6] = {0, 0, 0, 0, 0, 0};
 
 	Board board;
 
@@ -49,4 +49,6 @@ public:
 
 	// setBoard(Board board): Sets current nodes board to board
 	void setBoard(Board board);
+
+	int getArry();
 };

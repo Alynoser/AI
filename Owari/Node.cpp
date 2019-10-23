@@ -93,3 +93,8 @@ void Node::setBoard(Board board1)
 {
 	board = board1;
 }
+
+int Node::getArry()
+{
+	return aray;
+}
