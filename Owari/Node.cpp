@@ -98,3 +98,8 @@ int Node::getArry()
 {
 	return aray;
 }
+
+void Node::setArry(int temp)
+{
+	aray = temp;
+}
