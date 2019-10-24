@@ -72,7 +72,7 @@ void Tree::populateTree()
 	}
 }
 
-int Tree::evaluateTree(int prevMove)
+int Tree::evaluateTree()
 {
 	//sets up base varibles that are used in the function
 

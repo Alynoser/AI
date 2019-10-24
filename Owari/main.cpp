@@ -38,7 +38,7 @@ void runGame(Board newBoard)
 		{
 			Tree temp(6, newBoard);
 			temp.populateTree();
-			pitnum = temp.evaluateTree(prevMove);
+			pitnum = temp.evaluateTree();
 			newBoard.move(pitnum);
 			prevMove = pitnum;
 			newBoard.setTurn();
