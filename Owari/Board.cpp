@@ -299,8 +299,8 @@ bool Board::endOfGame()
 		{
 			capture(i);
 		}
-		cout << "Winner is South with: " << getPitCount(13) << " pits!" << endl;
-		cout << "Loser is North with: " << getPitCount(6) << " pits."
+		cout << "Winner is North with: " << getPitCount(13) << " pits!" << endl;
+		cout << "Loser is South with: " << getPitCount(6) << " pits."
 	}
 	else
 	{
