@@ -78,7 +78,7 @@ int Tree::evaluateTree()
 
 	Node* temp = root;
 	int move = -1;
-	int favoriteChild = 0;
+	int favoriteChild = -10000;
 	int rootVisit = 0;
 
 	while (true)
@@ -189,44 +189,11 @@ int Tree::evaluateTree()
 		if (temp == root)
 		{
 			Board b = root->getBoard();
-			for (int i = 0; i < 6; i++)
-			{
-				tArray[i] = temp->getArayValue(i);
-			}
 			tAlpha = temp->getAlpha();
-			if (tAlpha > favoriteChild)
+			if ((tAlpha > favoriteChild) && (b.getPitCount(rootVisit) != 0))
 			{
-
-				if ((tArray[0] == 0) && b.getPitCount(0) != 0)
-				{
-					move = 0;
-					favoriteChild = tAlpha;
-				}
-				else if ((tArray[1] == 0) && b.getPitCount(1) != 0)
-				{
-					move = 1;
-					favoriteChild = tAlpha;
-				}
-				else if ((tArray[2] == 0) && b.getPitCount(2) != 0)
-				{
-					move = 2;
-					favoriteChild = tAlpha;
-				}
-				else if ((tArray[3] == 0) && b.getPitCount(3) != 0)
-				{
-					move = 3;
-					favoriteChild = tAlpha;
-				}
-				else if ((tArray[4] == 0) && b.getPitCount(4) != 0)
-				{
-					move = 4;
-					favoriteChild = tAlpha;
-				}
-				else if ((tArray[5] == 0) && b.getPitCount(5) != 0)
-				{
-					move = 5;
-					favoriteChild = tAlpha;
-				}
+				move = rootVisit;
+				favoriteChild = tAlpha;
 			}
 			rootVisit++;
 			if (rootVisit == 6)
