@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include "Board.h"
+#include <string>
 
 using namespace std;
 
@@ -306,16 +307,16 @@ bool Board::endOfGame()
 
 void Board::printBoard()
 {
-	char playBoard[3][8] = {
-		{' ', pit[12] + 48, pit[11] + 48, pit[10] + 48, pit[9] + 48, pit[8] + 48, pit[7] + 48, ' '},
-		{ pit[13] + 48, ' ', ' ', ' ', ' ', ' ', ' ',  pit[6] + 48},
-		{' ', pit[0] + 48, pit[1] + 48, pit[2] + 48, pit[3] + 48, pit[4] + 48, pit[5] + 48, ' '},
+	string playBoard[3][8] = {
+		{" ", to_string(pit[12]), to_string(pit[11]), to_string(pit[10]), to_string(pit[9]), to_string(pit[8]), to_string(pit[7]), " "},
+		{ to_string(pit[13]), " ", " ", " ", " ", " ", " ",  to_string(pit[6])},
+		{" ", to_string(pit[0]), to_string(pit[1]), to_string(pit[2]), to_string(pit[3]), to_string(pit[4]), to_string(pit[5]), " "},
 	};
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			cout << playBoard[i][j] << ' ';
+			cout << playBoard[i][j] << " ";
 		}
 		cout << endl;
 	}
