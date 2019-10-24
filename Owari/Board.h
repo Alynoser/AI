@@ -11,7 +11,7 @@ private:
 public:
 	// Board(): Initilizes player pits to 3 & Sets humansTurn to true
 	Board();
-	
+
 	// getTurn(): Returns true if it is the humans turn, false if its the AI's turn
 	bool getTurn();
 
@@ -57,7 +57,7 @@ public:
 
 	// sees if a pit can capture another pit
 	bool canCapture(int pitNumber);
-	
+
 	//finds the value of the captureable pit
 	int captureSize(int pitNumber);
 

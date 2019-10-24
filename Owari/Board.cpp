@@ -10,11 +10,11 @@ using namespace std;
 
 // Board: Constructor
 Board::Board()
-{	
+{
 	humansTurn = true;
-	for(int i = 0; i <= 13; i++)
+	for (int i = 0; i <= 13; i++)
 	{
-		if(i != 6 && i != 13)
+		if (i != 6 && i != 13)
 		{
 			pit[i] = 3;
 		}
@@ -36,7 +36,7 @@ bool Board::getTurn()
 // Will switch the turns depending on what it is.
 void Board::setTurn()
 {
-	if(humansTurn)
+	if (humansTurn)
 		humansTurn = false;
 	else //(!humanTurn)
 		humansTurn = true;
@@ -46,7 +46,7 @@ void Board::setTurn()
 // Returns the count of 'stones' in a certain index of the pit array
 int Board::getPitCount(int pitIndex)
 {
-	if(pitIndex < 0 || pitIndex > 13)
+	if (pitIndex < 0 || pitIndex > 13)
 		return -1;
 	else
 		return pit[pitIndex];
@@ -56,7 +56,7 @@ int Board::getPitCount(int pitIndex)
 // Sets an index in the pit array to the value specified by pitCount
 void Board::setPitCount(int pitIndex, int pitCount)
 {
-	if(pitCount >= 0)
+	if (pitCount >= 0)
 		pit[pitIndex] = pitCount;
 	else
 	{
@@ -73,12 +73,12 @@ void Board::whoMovesFirst()
 	char i;
 	bool prompt = true;
 
-	while(prompt)
+	while (prompt)
 	{
 		cout << "Would you like to move first? (y/n)";
 		cin >> i;
 
-		if(tolower(i) == 'y' || tolower(i) == 'n')
+		if (tolower(i) == 'y' || tolower(i) == 'n')
 			prompt = false;
 	}
 
@@ -94,13 +94,13 @@ void Board::move(int pitNumber)
 	int pitCount = getPitCount(pitNumber);
 	setPitCount(pitNumber, 0);
 	pitNumber = getNextPitNum(pitNumber);
-	while(pitCount != 0)
+	while (pitCount != 0)
 	{
-		if(getTurn() && pitNumber == 7)
+		if (getTurn() && pitNumber == 7)
 		{
 			pitNumber = getNextPitNum(pitNumber);
 		}
-		else if(!getTurn() && pitNumber == 13)
+		else if (!getTurn() && pitNumber == 13)
 		{
 			pitNumber = getNextPitNum(pitNumber);
 		}
@@ -124,32 +124,32 @@ void Board::capture(int pitNumber)
 		{
 			if (getPitCount(pitNumber) == 1)
 			{
-				switch(pitNumber)
+				switch (pitNumber)
 				{
-					case 7:
-						setPitCount(13, (getPitCount(13) + getPitCount(5)));
-						setPitCount(5, 0);
-						break;
-					case 8:
-						setPitCount(13, (getPitCount(13) + getPitCount(4)));
-						setPitCount(4, 0);
-						break;
-					case 9:
-						setPitCount(13, (getPitCount(13) + getPitCount(3)));
-						setPitCount(3, 0);
-						break;
-					case 10:
-						setPitCount(13, (getPitCount(13) + getPitCount(2)));
-						setPitCount(2, 0);
-						break;
-					case 11:
-						setPitCount(13, (getPitCount(13) + getPitCount(1)));
-						setPitCount(1, 0);
-						break;
-					case 12:
-						setPitCount(13, (getPitCount(13) + getPitCount(0)));
-						setPitCount(0, 0);
-						break;
+				case 7:
+					setPitCount(13, (getPitCount(13) + getPitCount(5)));
+					setPitCount(5, 0);
+					break;
+				case 8:
+					setPitCount(13, (getPitCount(13) + getPitCount(4)));
+					setPitCount(4, 0);
+					break;
+				case 9:
+					setPitCount(13, (getPitCount(13) + getPitCount(3)));
+					setPitCount(3, 0);
+					break;
+				case 10:
+					setPitCount(13, (getPitCount(13) + getPitCount(2)));
+					setPitCount(2, 0);
+					break;
+				case 11:
+					setPitCount(13, (getPitCount(13) + getPitCount(1)));
+					setPitCount(1, 0);
+					break;
+				case 12:
+					setPitCount(13, (getPitCount(13) + getPitCount(0)));
+					setPitCount(0, 0);
+					break;
 				}
 			}
 		}
@@ -161,32 +161,32 @@ void Board::capture(int pitNumber)
 		{
 			if (getPitCount(pitNumber) == 1)
 			{
-				switch(pitNumber)
+				switch (pitNumber)
 				{
-					case 0:
-						setPitCount(6, (getPitCount(6) + getPitCount(12)));
-						setPitCount(12, 0);
-						break;
-					case 1:
-						setPitCount(6, (getPitCount(6) + getPitCount(11)));
-						setPitCount(11, 0);
-						break;
-					case 2:
-						setPitCount(6, (getPitCount(6) + getPitCount(10)));
-						setPitCount(10, 0);
-						break;
-					case 3:
-						setPitCount(6, (getPitCount(6) + getPitCount(9)));
-						setPitCount(9, 0);
-						break;
-					case 4:
-						setPitCount(6, (getPitCount(6) + getPitCount(8)));
-						setPitCount(8, 0);
-						break;
-					case 5:
-						setPitCount(6, (getPitCount(6) + getPitCount(7)));
-						setPitCount(7, 0);
-						break;
+				case 0:
+					setPitCount(6, (getPitCount(6) + getPitCount(12)));
+					setPitCount(12, 0);
+					break;
+				case 1:
+					setPitCount(6, (getPitCount(6) + getPitCount(11)));
+					setPitCount(11, 0);
+					break;
+				case 2:
+					setPitCount(6, (getPitCount(6) + getPitCount(10)));
+					setPitCount(10, 0);
+					break;
+				case 3:
+					setPitCount(6, (getPitCount(6) + getPitCount(9)));
+					setPitCount(9, 0);
+					break;
+				case 4:
+					setPitCount(6, (getPitCount(6) + getPitCount(8)));
+					setPitCount(8, 0);
+					break;
+				case 5:
+					setPitCount(6, (getPitCount(6) + getPitCount(7)));
+					setPitCount(7, 0);
+					break;
 				}
 			}
 		}
@@ -196,39 +196,39 @@ void Board::capture(int pitNumber)
 // gets the next move on the board
 int Board::getNextPitNum(int pitNumber)
 {
-	switch(pitNumber)
+	switch (pitNumber)
 	{
-		case 0:
-			return 1;
-		case 1:
-			return 2;
-		case 2:
-			return 3;
-		case 3:
-			return 4;
-		case 4:
-			return 5;
-		case 5:
-			return 6;
-		case 6:
-			return 7;
-		case 7:
-			return 8;
-		case 8:
-			return 9;
-		case 9:
-			return 10;
-		case 10:
-			return 11;
-		case 11:
-			return 12;
-		case 12:
-			return 13;
-		case 13:
-			return 0;
-		default:
-			cout << "Invalid pitNumber. Program terminating.\n" << endl;
-			exit(0);
+	case 0:
+		return 1;
+	case 1:
+		return 2;
+	case 2:
+		return 3;
+	case 3:
+		return 4;
+	case 4:
+		return 5;
+	case 5:
+		return 6;
+	case 6:
+		return 7;
+	case 7:
+		return 8;
+	case 8:
+		return 9;
+	case 9:
+		return 10;
+	case 10:
+		return 11;
+	case 11:
+		return 12;
+	case 12:
+		return 13;
+	case 13:
+		return 0;
+	default:
+		cout << "Invalid pitNumber. Program terminating.\n" << endl;
+		exit(0);
 	}
 }
 
@@ -240,34 +240,34 @@ void getHumanPlayerMove()
 {
 	bool prompt = true;
 	int pit;
-	while(prompt)
+	while (prompt)
 	{
 		cout << "Please enter a pit to move from (1-6).\n";
 		cin >> pit;
-		if(pit >= 1 || pit <= 6)
+		if (pit >= 1 || pit <= 6)
 			prompt = false;
 	}
 
-	switch(pit)
+	switch (pit)
 	{
-		case 1:
-			pit = 7;
-			break;
-		case 2:
-			pit = 8;
-			break;
-		case 3:
-			pit = 9;
-			break;
-		case 4:
-			pit = 10;
-			break;
-		case 5:
-			pit = 11;
-			break;
-		case 6:
-			pit = 12;
-			break;
+	case 1:
+		pit = 7;
+		break;
+	case 2:
+		pit = 8;
+		break;
+	case 3:
+		pit = 9;
+		break;
+	case 4:
+		pit = 10;
+		break;
+	case 5:
+		pit = 11;
+		break;
+	case 6:
+		pit = 12;
+		break;
 	}
 	move(pit);
 }
@@ -279,20 +279,20 @@ void getHumanPlayerMove()
 bool Board::endOfGame()
 {
 	int isEnd = false;
-	if((pit[0] == 0 && pit[1] == 0 && pit[2] == 0 && pit[3] == 0 && pit[4] == 0 
+	if ((pit[0] == 0 && pit[1] == 0 && pit[2] == 0 && pit[3] == 0 && pit[4] == 0
 		&& pit[5] == 0))
 	{
 		isEnd = true;
-		for(int i = 7; i <= 12; i++)
+		for (int i = 7; i <= 12; i++)
 		{
 			capture(i);
 		}
 	}
-	else if((pit[7] == 0 && pit[8] == 0 && pit[9] == 0 && pit[10] == 0 
+	else if ((pit[7] == 0 && pit[8] == 0 && pit[9] == 0 && pit[10] == 0
 		&& pit[11] == 0 && pit[12] == 0))
 	{
 		isEnd = true;
-		for(int i = 0; i <= 5; i++)
+		for (int i = 0; i <= 5; i++)
 		{
 			capture(i);
 		}
@@ -311,9 +311,9 @@ void Board::printBoard()
 		{ pit[13] + 48, ' ', ' ', ' ', ' ', ' ', ' ',  pit[6] + 48},
 		{' ', pit[0] + 48, pit[1] + 48, pit[2] + 48, pit[3] + 48, pit[4] + 48, pit[5] + 48, ' '},
 	};
-	for(int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		for(int j = 0; j < 8; j++)
+		for (int j = 0; j < 8; j++)
 		{
 			cout << playBoard[i][j] << ' ';
 		}

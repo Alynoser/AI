@@ -6,7 +6,6 @@ class Tree
 {
 private:
 	int depth;
-
 	Node *root;
 
 public:

@@ -7,7 +7,7 @@ private:
 	int depth;
 	int alpha;
 	int beta;
-	int aray[6] = {0, 0, 0, 0, 0, 0};
+	int aray[6] = { 0, 0, 0, 0, 0, 0 };
 
 	Board board;
 
@@ -24,7 +24,6 @@ public:
 	Node();
 	// Node(int, Board): Initilize a node with a depth and a board
 	Node(int depth, Board board);
-
 	// getDepth(): Return the depth of a node
 	int getDepth();
 	// getAlpha(): Return the alpha value of a node
@@ -41,7 +40,7 @@ public:
 	// getPrev: Returns previous node
 	Node* getPrev();
 	// getNext: Returns next node
-	Node* getNext();
+	Node* getNext(int i);
 
 	// setDepth(int): Sets depth of a node to mDepth
 	void setDepth(int mDepth);
@@ -53,7 +52,8 @@ public:
 	// setBoard(Board board): Sets current nodes board to board
 	void setBoard(Board board);
 
-	int getArry();
+	int* getArry();
 	void setArry(int temp[]);
 	void flipBit();
+	int getArayValue(int location);
 };

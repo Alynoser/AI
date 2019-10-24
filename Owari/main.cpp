@@ -45,18 +45,18 @@ void runGame(Board newBoard)
 {
 	int pitnum = 0;
 	newBoard.whoMovesFirst();
-	while(!newBoard.endOfGame())
+	while (!newBoard.endOfGame())
 	{
 		system("clear");
 		newBoard.printBoard();
 		//humans turn
-		if(newBoard.getTurn())
-		{	
+		if (newBoard.getTurn())
+		{
 			cout << "Please enter pit num to move" << endl;
 			cin >> pitnum;
-			if(pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
+			if (pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
 			{
-				while(pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
+				while (pitnum != 7 && pitnum != 8 && pitnum != 9 && pitnum != 10 && pitnum != 11 && pitnum != 12)
 				{
 					cout << "Please enter a proper value" << endl;
 					cin >> pitnum;
@@ -89,6 +89,8 @@ int main()
 	// runGame(newBoard);
 	Tree temp(2, newBoard);
 	temp.populateTree();
-
+	int x = temp.evaluateTree();
+	cout << x << endl;
+	cin >> x;
 	return 0;
 }
