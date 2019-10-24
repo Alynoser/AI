@@ -6,44 +6,12 @@
 
 using namespace std;
 
-int Evaluate(Board x)
-{
-	int evaluatePoints = 0;
-	evaluatePoints = evaluatePoints + x.getMyPoints() - x.getPlayerPoints();
-	for (int i = 0; i < 5; i++)
-	{
-		if (x.canCapture(i))
-		{
-			if (x.captureSize(i) != 0)
-			{
-				evaluatePoints = evaluatePoints + 3;
-			}
-		}
-	}
-	for (int i = 7; i < 12; i++)
-	{
-		if (x.canCapture(i))
-		{
-			if (x.captureSize(i) != 0)
-			{
-				evaluatePoints = evaluatePoints - 3;
-			}
-		}
-	}
-	if (x.isFucked(7))
-	{
-		evaluatePoints = evaluatePoints + 10;
-	}
-	if (x.isFucked(0))
-	{
-		evaluatePoints = 0;
-	}
-	return evaluatePoints;
-}
+
 
 void runGame(Board newBoard)
 {
 	int pitnum = 0;
+	int prevMove = -1;
 	newBoard.whoMovesFirst();
 	while (!newBoard.endOfGame())
 	{
@@ -68,29 +36,23 @@ void runGame(Board newBoard)
 		//computer turn
 		else
 		{
-			//pitnum = ryans code
+			Tree temp(6, newBoard);
+			temp.populateTree();
+			pitnum = temp.evaluateTree(prevMove);
 			newBoard.move(pitnum);
+			prevMove = pitnum;
 			newBoard.setTurn();
 		}
 	}
 
 }
-int FindMove(Board x)
-{
-	Tree tree(0, x);
-	tree.populateTree();
-	int move = tree.evaluateTree();
-	return move;
-}
 
 int main()
 {
 	Board newBoard;
-	// runGame(newBoard);
-	Tree temp(2, newBoard);
-	temp.populateTree();
-	int x = temp.evaluateTree();
-	cout << x << endl;
+	runGame(newBoard);
+
+	int x;
 	cin >> x;
 	return 0;
 }
