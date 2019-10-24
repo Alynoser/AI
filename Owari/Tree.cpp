@@ -12,10 +12,10 @@ Tree::Tree()
 Tree::Tree(int depth1, Board board)
 {
 	root = new Node();
-	if (depth < 0 || depth > 6)
+	if (depth < 0 || depth > 7)
 	{
 		cout << "Depth is being set to 6." << endl;
-		depth = 6;
+		depth = 7;
 	}
 	else
 		depth = depth1;
@@ -44,17 +44,17 @@ void Tree::populateTree()
 			bool hTurn = tempBoard.getTurn();
 			//checks for if computer or human turn, and current depth
 			//if depth is at max depth, nothing happens
-			if (hTurn && (firstVecNode->getDepth() < 6))
+			if (hTurn && (firstVecNode->getDepth() < 7))
 			{
 				// Sets the current
 				tempBoard.move(i + 6);
 			}
 			//same as everything above
-			else if (!hTurn && (firstVecNode->getDepth() < 6))
+			else if (!hTurn && (firstVecNode->getDepth() < 7))
 			{
 				tempBoard.move(i - 1);
 			}
-			else if (firstVecNode->getDepth() >= 6)
+			else if (firstVecNode->getDepth() >= 7)
 			{
 				break;
 			}
@@ -104,7 +104,7 @@ int Tree::evaluateTree()
 			}
 		}
 		//checks the depth to see if max depth reached
-		if (tDepth == 6)
+		if (tDepth == 7)
 		{
 			Board x = temp->getBoard();
 			value = evaluateBoard(x);
@@ -195,6 +195,7 @@ int Tree::evaluateTree()
 			tAlpha = temp->getAlpha();
 			if (tAlpha > favoriteChild)
 			{
+				favoriteChild = tAlpha;
 				if (tArray[0] == 0)
 				{
 					move = 0;
