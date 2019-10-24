@@ -33,27 +33,39 @@ int Node::getBeta()
 	return beta;
 }
 
-Node* Node::getNode(int num)
-{
-	if(num == 1)
-		return child1;
-	else if(num == 2)
-		return child2;
-	else if(num == 3)
-		return child3;
-	else if(num == 4)
-		return child4;
-	else if(num == 5)
-		return child5;
-	else if(num == 6)
-		return child6;
-	else
-		return prev_child;
-}
-
 Board Node::getBoard()
 {
 	return board;
+}
+
+Node* Node::getPrev()
+{
+	return prev_child;
+}
+
+Node* Node::getNext(int i)
+{
+	switch(i)
+	{
+		case(1):
+    		return child1;
+    		break;
+    	case(2):
+    		return child2;
+    		break;
+    	case(3):
+    		return child3;
+    		break;
+    	case(4):
+    		return child4;
+    		break;
+    	case(5):
+    		return child5;
+    		break;
+    	case(6):
+    		return child6;
+    		break;
+	}
 }
 
 void Node::setDepth(int mDepth)
@@ -71,22 +83,34 @@ void Node::setBeta(int mBeta)
 	beta = mBeta;
 }
 
-void Node::setNode(int num, Node* child)
+void setPrev(Node* prev)
 {
-	if(num == 1)
-		child1 = child;
-	else if(num == 2)
-		child2 = child;
-	else if(num == 3)
-		child3 = child;
-	else if(num == 4)
-		child4 = child;
-	else if(num == 5)
-		child5 = child;
-	else if(num == 6)
-		child6 = child;
-	else
-		prev_child = child;
+	prev_child = prev;
+}
+
+void setNext(int i, Node* next);
+{
+	switch(i)
+	{
+		case(1):
+    		child1 = next;
+    		break;
+    	case(2):
+    		child2 = next;
+    		break;
+    	case(3):
+    		child3 = next;
+    		break;
+    	case(4):
+    		child4 = next;
+    		break;
+    	case(5):
+    		child5 = next;
+    		break;
+    	case(6):
+    		child6 = next;
+    		break;
+	}
 }
 
 void Node::setBoard(Board board1)
@@ -96,7 +120,12 @@ void Node::setBoard(Board board1)
 
 int Node::getArry()
 {
-	return aray;
+    return aray;
+}
+
+void Node::setArry(int temp[])
+{
+    aray = temp;
 }
 
 void Node::flipBit()
