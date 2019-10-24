@@ -33,9 +33,15 @@ public:
 	int getBeta();
 	// getBoard(): Returns the board in a current node
 	Board getBoard();
-	// getNode(int): Returns the child node if specified 1-6, or the previous node if a number 
-	//				 other than 1-6 is given
-	Node* getNode(int num);
+
+	// setPrev(Node*): Set previous node
+	void setPrev(Node* prev);
+	// setNext(Node*): Set next Node
+	void setNext(int i, Node* next);
+	// getPrev: Returns previous node
+	Node* getPrev();
+	// getNext: Returns next node
+	Node* getNext();
 
 	// setDepth(int): Sets depth of a node to mDepth
 	void setDepth(int mDepth);
@@ -43,13 +49,11 @@ public:
 	void setAlpha(int mAlpha);
 	// setBeta(int): Sets beta value of a node to mBeta
 	void setBeta(int mBeta);
-	// setNode(int, Node*): Sets child node 1-6 (or previous if not 1-6) to the node given by 
-	//						Node*
-	void setNode(int num, Node* node);
 
 	// setBoard(Board board): Sets current nodes board to board
 	void setBoard(Board board);
 
 	int getArry();
+	void setArry(int temp[]);
 	void flipBit();
 };

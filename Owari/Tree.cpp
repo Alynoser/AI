@@ -26,42 +26,52 @@ Tree::Tree(int depth1,Board board)
 
 void Tree::populateTree()
 {
-	vector<Node*> v;
-	Node* temp = root;
-	v.push_back(temp);
-	while(true)
-	{
-		Node* temp1 = v[0];
-		for(int i = 1; i <= 6; ++i)
-		{
-			Board tempBoard = temp->getBoard();
-			bool turn = tempBoard.getTurn();
-			if(turn && (temp->getDepth() < depth))
-			{
-				tempBoard.move((i+6));
-				temp->getNode(i)->setBoard(tempBoard);
-				temp->getNode(i)->setNode(0, temp);
-				temp->getNode(i)->setDepth(temp->getDepth() + 1);
-				temp->getNode(i)->getBoard().setTurn();
-				v.push_back(temp->getNode(i));
-			}
-			else if(!turn && (temp->getDepth() < depth))
-			{
-				tempBoard.move(i-1);
-				temp->getNode(i)->setBoard(tempBoard);
-				temp->getNode(i)->setNode(0, temp);
-				temp->getNode(i)->setDepth(temp->getDepth() + 1);
-				temp->getNode(i)->getBoard().setTurn();
-				v.push_back(temp->getNode(i));
-			}
+// creates a vector that should be used as a queue when populating the tree
+    vector<Node*> v;
+    //copies the root node
+    Node* temp = root;
+    v.push_back(temp);
+    while(true)
+    {
+        //gets first item on the queue
+        Node* firstVecNode = v[0];
+        //goes through the 6 children of the current node creating them
+        for(int i = 1; i <= 6; i++)
+        {
+            //gets the current board
+            Board tempBoard = firstVecNode->getBoard();
+            //gets whos turn it should be
+            bool hTurn = tempBoard.getTurn();
+            //checks for if computer or human turn, and current depth
+            //if depth is at max depth, nothing happens
+            if(hTurn && (firstVecNode->getDepth() < depth))
+            {
+            	// Sets the current
+                tempBoard.move(i + 6);
+            }
+            //same as everything above
+            else if(!hTurn && (firstVecNode->getDepth() < depth))
+            {
+                tempBoard.move(i - 1);
+            }
+            else if(firstVecNode->getDepth() >= depth)
+            {
+            	break;
+            }
 
-		}
+            Node* newNode = new Node((firstVecNode->getDepth() + 1), tempBoard);
+            newNode->setPrev(firstVecNode);
+            Node* currPrev = newNode;
+            currPrev->setNext(i, newNode);
+        }
 
-		v.erase(v.begin());
-		if(v.size() == 0)
-			break;
+        //removes the item at the begining of the queue, starts again.
+        v.erase(v.begin());
+        if(v.size() == 0)
+            break;
 	}
 }
+
 int Tree::evaluateTree()
 { 
 	//sets up base varibles that are used in the function
