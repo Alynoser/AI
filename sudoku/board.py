@@ -28,12 +28,12 @@ class Board:
 				print (self.playboard[y][x], end = " ")
 		print()
 
-	def get_section(self, ytp, xtp):
+	def get_section(self, ytp, xtp, tempboard1):
 		tempboard = [[0 for i in range(3)] for j in range(3)]
 
 		for y in range(3):
 			for x in range(3):
-				tempboard[y][x] = self.playboard[(ytp*3) + y][(xtp*3) + x]
+				tempboard[y][x] = tempboard1[(ytp*3) + y][(xtp*3) + x]
 		return tempboard
 
 	def set_board_section(self, ytp, xtp, tempboard):
@@ -42,18 +42,18 @@ class Board:
 			for x in range(3):
 				self.playboard[(ytp*3) + y][(xtp*3) + x] = tempboard[y][x]
 
-	def solve(self):
+	def findFewest(self,tempboard1):
 		fewestOptions = 100
 		xFew = -1
 		yFew = -1
 		for y in range (9):
 			for x in range (9):
-				temp = self.playboard[y][x]
+				temp = tempboard1[y][x]
 				if (int(temp) == 0):
-					possible = self.find_avaliable(x,y)
-					row = self.getRow(x)
+					possible = self.find_avaliable(x,y,tempboard1)
+					row = self.getRow(x,tempboard1)
 					row.sort()
-					collum = self.getCollum(y)
+					collum = self.getCollum(y,tempboard1)
 					collum.sort()
 					for i in range (9):
 						for j in range (9):
@@ -70,25 +70,37 @@ class Board:
 		fewest = [xFew, yFew, fewestOptions]
 		return(fewest)
 
+	def getOptions(self,x,y,tempboard1):
+		possible = self.find_avaliable(x,y,tempboard1)
+		row = self.getRow(x,tempboard1)
+		row.sort()
+		collum = self.getCollum(y,tempboard1)
+		collum.sort()
+		for i in range(9):
+			for j in range(9):
+				if (((possible[i] == row[j]) | (possible[i] == collum[j])) & (possible[i] != 0)):
+					possible[i] = 0
+		return possible
 
-	def getRow(self,x):
+
+	def getRow(self,x,tempboard1):
 		row = [0,0,0,0,0,0,0,0,0]
 		for y in range(9):
-			temp = self.playboard[y][x]
+			temp = tempboard1[y][x]
 			row[y] = int(temp)
 		return row
 
-	def getCollum(self,y):
+	def getCollum(self,y,tempboard1):
 		collum = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 		for x in range(9):
-			temp = self.playboard[y][x]
+			temp = tempboard1[y][x]
 			collum[x] = int(temp)
 		return collum
 
-	def find_avaliable(self, xtp, ytp):
+	def find_avaliable(self, xtp, ytp,tempboard1):
 		x = int(xtp / 3)
 		y = int(ytp / 3)
-		tempboard = self.get_section(int(x),int(y))
+		tempboard = self.get_section(int(x),int(y),tempboard1)
 		possible = [1,2,3,4,5,6,7,8,9]
 		for i in range(3):
 			for j in range(3):
@@ -97,6 +109,38 @@ class Board:
 					if (possible[k] == int(temp)) & (possible[k] != 0):
 						possible[k] = 0
 		return possible
+
+	def isValid(self,tempboard1):
+		for y in range(9):
+			for x in range(9):
+				if self.checkSpot(y,x,tempboard1) == False:
+					return False
+
+
+	def checkSpot(self,yo,xo,tempboard1):
+		row = self.getRow(xo,tempboard1)
+		collum = self.getCollum(yo,tempboard1)
+		xtp = int(xo/3)
+		ytp = int(yo/3)
+		tempboard = self.get_section(ytp,xtp,tempboard1)
+		value = tempboard1[yo,xo]
+		for i in range (3):
+			for j in range(3):
+				if ((((xtp*3)+i) == xo) & (((ytp*3)+j) == yo)):
+					pass
+				elif tempboard[j][i] == value:
+					return False
+		for k in range (9):
+			if k == yo:
+				pass
+			elif row[k] == value:
+				return False
+		for l in range (9):
+			if l == xo:
+				pass
+			elif collum[l] == value:
+				return False
+		return True
 
 
 
