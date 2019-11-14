@@ -15,7 +15,7 @@ class Board:
 			temp = re.sub(' ', '', temp)
 			temp = re.sub('\n', '', temp)
 			for j in temp:
-				self.playboard[y][x] = j
+				self.playboard[y][x] = int(j)
 				x = x + 1
 			y = y + 1
 
@@ -43,41 +43,46 @@ class Board:
 				self.playboard[(ytp*3) + y][(xtp*3) + x] = tempboard[y][x]
 
 	def solve(self):
-		hasChanged=True
-		while(hasChanged == True):
-			hasChanged = False
-			for y in range (9):
-				for x in range (9):
-					temp = self.playboard[y][x]
-					if (int(temp) == 0):
-						possible = self.find_avaliable(x,y)
-						row = self.getRow(x)
-						collum = self.getCollum(y)
-						for i in range (9):
-							if (((possible[i]==row[i])|(possible[i]==collum[i]))&(possible[i] !=0)):
+		fewestOptions = 100
+		xFew = -1
+		yFew = -1
+		for y in range (9):
+			for x in range (9):
+				temp = self.playboard[y][x]
+				if (int(temp) == 0):
+					possible = self.find_avaliable(x,y)
+					row = self.getRow(x)
+					row.sort()
+					collum = self.getCollum(y)
+					collum.sort()
+					for i in range (9):
+						for j in range (9):
+							if (((possible[i]==row[j])|(possible[i]==collum[j]))&(possible[i] !=0)):
 								possible[i] = 0
-						options = 0
-						for i in range(9):
-							if (possible[i] != 0):
-								options = options + 1
-						if (options == 1):
-							for i in range(9):
-								if (possible[i] != 0):
-									move = possible[i]
-							self.playboard[y][x] = move
-							hasChanged = True
+					options = 0
+					for i in range(9):
+						if (possible[i] != 0):
+							options = options + 1
+					if (options < fewestOptions):
+						fewestOptions = options
+						xFew = x
+						yFew = y
+		fewest = [xFew, yFew, fewestOptions]
+		return(fewest)
 
 
 	def getRow(self,x):
 		row = [0,0,0,0,0,0,0,0,0]
 		for y in range(9):
-			row[y] = self.playboard[y][x]
+			temp = self.playboard[y][x]
+			row[y] = int(temp)
 		return row
 
 	def getCollum(self,y):
 		collum = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 		for x in range(9):
-			collum[x] = self.playboard[y][x]
+			temp = self.playboard[y][x]
+			collum[x] = int(temp)
 		return collum
 
 	def find_avaliable(self, xtp, ytp):
@@ -88,7 +93,8 @@ class Board:
 		for i in range(3):
 			for j in range(3):
 				for k in range(9):
-					if ((possible[k] == tempboard[(y*3)+i][(x*3)+j]) & (possible[k] != 0)):
+					temp =  tempboard[i][j]
+					if (possible[k] == int(temp)) & (possible[k] != 0):
 						possible[k] = 0
 		return possible
 
