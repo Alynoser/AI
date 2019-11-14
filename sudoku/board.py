@@ -23,9 +23,9 @@ class Board:
 	def print_board(self):
 		x = 0
 		y = 0
-		for y in range(8):
+		for y in range(9):
 			print()
-			for x in range(8):
+			for x in range(9):
 				print (self.playboard[y][x], end = " ")
 		print()
 
@@ -51,16 +51,8 @@ class Board:
 			for x in range (9):
 				temp = tempboard1[y][x]
 				if (int(temp) == 0):
-					possible = self.find_avaliable(x,y,tempboard1)
-					row = self.getRow(x,tempboard1)
-					row.sort()
-					collum = self.getCollum(y,tempboard1)
-					collum.sort()
-					for i in range (9):
-						for j in range (9):
-							if (((possible[i]==row[j])|(possible[i]==collum[j]))&(possible[i] !=0)):
-								possible[i] = 0
 					options = 0
+					possible = self.getOptions(y,x,tempboard1)
 					for i in range(9):
 						if (possible[i] != 0):
 							options = options + 1
@@ -68,11 +60,11 @@ class Board:
 						fewestOptions = options
 						xFew = x
 						yFew = y
-		fewest = [xFew, yFew, fewestOptions]
+		fewest = [yFew, xFew, fewestOptions]
 		return(fewest)
 
-	def getOptions(self,x,y,tempboard1):
-		possible = self.find_avaliable(x,y,tempboard1)
+	def getOptions(self,y,x,tempboard1):
+		possible = self.find_avaliable(y,x,tempboard1)
 		row = self.getRow(x,tempboard1)
 		row.sort()
 		collum = self.getCollum(y,tempboard1)
@@ -98,10 +90,10 @@ class Board:
 			collum[x] = int(temp)
 		return collum
 
-	def find_avaliable(self, xtp, ytp,tempboard1):
+	def find_avaliable(self, ytp, xtp,tempboard1):
 		x = int(xtp / 3)
 		y = int(ytp / 3)
-		tempboard = self.get_section(int(x),int(y),tempboard1)
+		tempboard = self.get_section(int(y),int(x),tempboard1)
 		possible = [1,2,3,4,5,6,7,8,9]
 		for i in range(3):
 			for j in range(3):
@@ -114,17 +106,33 @@ class Board:
 	def remove_values_from_list(self, the_list, val):
 		return [value for value in the_list if value != val]
 
-	def recsolve(self, x, y, tempvar, tempboard):
-		boardtp = copy.deepcopy(tempboard)
-		boardtp[y][x] = tempvar
-		if not boardtp.valid_board():
-			return False
-		ops = self.fewest_options(boardtp)
+	def firstRec(self):
+		tempboard = copy.deepcopy(self.playboard)
+		ops = self.findFewest(tempboard)
 		if ops[2] == 0:
 			return False
 		if ops[0] == -1 and ops[1] == -1:
 			return True
-		oplist = self.get_options(ops[0], ops[1], boardtp)
+		oplist = self.getOptions(ops[0], ops[1], tempboard)
+		oplist = self.remove_values_from_list(oplist, 0)
+		for i in oplist:
+			retvar = self.recsolve(ops[0], ops[1], i, tempboard)
+			if retvar:
+				self.playboard[ops[0]][ops[1]] = i
+				return True
+		return False
+
+	def recsolve(self, y, x, tempvar, tempboard):
+		boardtp = copy.deepcopy(tempboard)
+		boardtp[y][x] = tempvar
+		if self.isValid(boardtp)==False:
+			return False
+		ops = self.findFewest(boardtp)
+		if ops[2] == 0:
+			return False
+		if ops[0] == -1 and ops[1] == -1:
+			return True
+		oplist = self.getOptions(ops[0], ops[1], boardtp)
 		oplist = self.remove_values_from_list(oplist, 0)
 		for i in oplist:
 			retvar = self.recsolve(ops[0], ops[1], i, boardtp)
@@ -146,20 +154,26 @@ class Board:
 		xtp = int(xo/3)
 		ytp = int(yo/3)
 		tempboard = self.get_section(ytp,xtp,tempboard1)
-		value = tempboard1[yo,xo]
+		value = tempboard1[yo][xo]
 		for i in range (3):
 			for j in range(3):
 				if ((((xtp*3)+i) == xo) & (((ytp*3)+j) == yo)):
+					pass
+				elif (tempboard[j][i] == 0):
 					pass
 				elif tempboard[j][i] == value:
 					return False
 		for k in range (9):
 			if k == yo:
 				pass
+			elif row[k] == 0:
+				pass
 			elif row[k] == value:
 				return False
 		for l in range (9):
 			if l == xo:
+				pass
+			elif collum[l] == 0:
 				pass
 			elif collum[l] == value:
 				return False
