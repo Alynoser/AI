@@ -1,4 +1,5 @@
 import re
+import copy
 
 class Board:
 
@@ -97,6 +98,29 @@ class Board:
 					if (possible[k] == int(temp)) & (possible[k] != 0):
 						possible[k] = 0
 		return possible
+
+	def remove_values_from_list(self, the_list, val):
+		return [value for value in the_list if value != val]
+
+	def recsolve(self, x, y, tempvar, tempboard):
+		boardtp = copy.deepcopy(tempboard)
+		boardtp[y][x] = tempvar
+		if not boardtp.valid_board():
+			return False
+		ops = self.fewest_options(boardtp)
+		if ops[2] == 0:
+			return False
+		if ops[0] == -1 and ops[1] == -1:
+			return True
+		oplist = self.get_options(ops[0], ops[1], boardtp)
+		oplist = self.remove_values_from_list(oplist, 0)
+		for i in oplist:
+			retvar = self.recsolve(ops[0], ops[1], i, boardtp)
+			if retvar:
+				self.playboard[ops[0]][ops[1]] = i
+				return True
+		return False
+
 
 
 
